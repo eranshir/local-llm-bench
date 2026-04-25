@@ -4,7 +4,7 @@ A reproducible benchmark suite for evaluating local LLMs on **agentic** workload
 
 Originally built to compare **Qwen 3 Coder 30B A3B** vs **Gemma 4 26B A4B** on Apple M5 Max for use as a local model in [NanoClaw v2](https://github.com/qwibitai/nanoclaw). The harness, scenarios, and grading layers are model-agnostic and work against any Anthropic-compatible `/v1/messages` endpoint (LM Studio, Anthropic API, OpenRouter via Anthropic-compat path, llama.cpp server, etc.).
 
-📖 **Read the writeup**: ["Picking a local model for NanoClaw v2 — a practical benchmark on Apple Silicon M5 Max"](https://eranshir.hashnode.dev/picking-a-local-model-for-nanoclaw-v2) (link to your Hashnode post).
+📖 **Read the writeup**: ["Picking a local model for NanoClaw v2 — a practical benchmark on Apple Silicon M5 Max"](https://eranshir.hashnode.dev/picking-a-local-model-for-nanoclaw-v2).
 
 ## Why this exists
 
