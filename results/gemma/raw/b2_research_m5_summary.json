@@ -1,0 +1,158 @@
+{
+  "scenario": {
+    "id": "b2_research_m5_summary",
+    "axis": "research_synthesis",
+    "system": "You are a research assistant. Gather facts via fetch_url, then write a clear ~200-word summary in plain prose.",
+    "prompt": "Research the Apple M5 Max chip and write me a 200-word summary suitable for a technically literate but non-specialist reader. Use fetch_url against https://www.apple.com/m5/ and any related pages. End with the summary text only.",
+    "tools": [
+      "fetch_url"
+    ],
+    "max_turns": 6,
+    "max_tokens": 2000,
+    "rubric": "Pass: \u22651 fetch + 100-350 word summary mentioning M5 (Max). Partial: 50-499 words or doesn't mention M5. Fail: no fetches or no summary.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "apple.com/m5"
+        },
+        "response": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded in each GPU core. 32-core Neural Engine at 38 TOPS. Up to 128GB unified memory at 546GB/s bandwidth. Released October 2025. Targeted at MacBook Pro and Mac Studio. Supports up to 4 external displays. ProRes, AV1, H.265 hardware encode/decode.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "neural-accelerator"
+        },
+        "response": "<h1>What is the Neural Accelerator (NAX)?</h1><p>NAX is a new GPU-embedded inference unit on M5. It accelerates matrix-multiply heavy workloads like large language model inference up to 3.5x faster than M4 Max for the same model and quantization. Available via Metal Performance Shaders and MLX framework.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "support.apple.com"
+        },
+        "response": "<h1>M5 Max specs - Support</h1><p>CPU: 16 cores. GPU: 40 cores. Memory bandwidth: 546 GB/s. Memory configurations: 36GB, 48GB, 64GB, 96GB, 128GB. Battery life on MacBook Pro 16: up to 24 hours. Available October 2025.</p>"
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "774633438",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/m5/"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 150,
+          "output_tokens": 29,
+          "cache_read_input_tokens": 16
+        },
+        "elapsed_s": 0.5866618156433105
+      },
+      {
+        "turn": 1,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "As of current official information, the Apple M5 Max represents a significant leap in silicon architecture, built using TSMC\u2019s advanced 3nm N3P process. Designed for high-end professional workflows, the chip features a sophisticated 16-core CPU configuration consisting of 12 performance cores and 4 efficiency cores, balancing raw power with energy efficiency.\n\nThe graphical capabilities are equally robust, featuring 40 GPU cores that support hardware-accelerated ray tracing. A standout innovation is the integration of a new Neural Accelerator (NAX) within each GPU core, which works in tandem with a dedicated 32-core Neural Engine capable of delivering 38 TOPS (trillion operations per second). This architecture is specifically optimized for heavy AI and machine learning tasks.\n\nTo support data-intensive applications like 8K video editing, the M5 Max offers up to 128GB of unified memory with a massive bandwidth of 546GB/s. It also includes dedicated hardware engines for ProRes, AV1, and H.265 codecs. Targeted at the MacBook Pro and Mac Studio, the chip is engineered to handle complex multitasking, supporting up to four external displays and providing a seamless experience for developers, creators, and data scientists.",
+            "text_raw": "<|channel>thought\n<channel|>As of current official information, the Apple M5 Max represents a significant leap in silicon architecture, built using TSMC\u2019s advanced 3nm N3P process. Designed for high-end professional workflows, the chip features a sophisticated 16-core CPU configuration consisting of 12 performance cores and 4 efficiency cores, balancing raw power with energy efficiency.\n\nThe graphical capabilities are equally robust, featuring 40 GPU cores that support hardware-accelerated ray tracing. A standout innovation is the integration of a new Neural Accelerator (NAX) within each GPU core, which works in tandem with a dedicated 32-core Neural Engine capable of delivering 38 TOPS (trillion operations per second). This architecture is specifically optimized for heavy AI and machine learning tasks.\n\nTo support data-intensive applications like 8K video editing, the M5 Max offers up to 128GB of unified memory with a massive bandwidth of 546GB/s. It also includes dedicated hardware engines for ProRes, AV1, and H.265 codecs. Targeted at the MacBook Pro and Mac Studio, the chip is engineered to handle complex multitasking, supporting up to four external displays and providing a seamless experience for developers, creators, and data scientists.",
+            "sanitized": true
+          }
+        ],
+        "usage": {
+          "input_tokens": 329,
+          "output_tokens": 263,
+          "cache_read_input_tokens": 150
+        },
+        "elapsed_s": 3.0153727531433105
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Research the Apple M5 Max chip and write me a 200-word summary suitable for a technically literate but non-specialist reader. Use fetch_url against https://www.apple.com/m5/ and any related pages. End with the summary text only."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "774633438",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/m5/"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "774633438",
+            "content": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded in each GPU core. 32-core Neural Engine at 38 TOPS. Up to 128GB unified memory at 546GB/s bandwidth. Released October 2025. Targeted at MacBook Pro and Mac Studio. Supports up to 4 external displays. ProRes, AV1, H.265 hardware encode/decode.</p>"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "As of current official information, the Apple M5 Max represents a significant leap in silicon architecture, built using TSMC\u2019s advanced 3nm N3P process. Designed for high-end professional workflows, the chip features a sophisticated 16-core CPU configuration consisting of 12 performance cores and 4 efficiency cores, balancing raw power with energy efficiency.\n\nThe graphical capabilities are equally robust, featuring 40 GPU cores that support hardware-accelerated ray tracing. A standout innovation is the integration of a new Neural Accelerator (NAX) within each GPU core, which works in tandem with a dedicated 32-core Neural Engine capable of delivering 38 TOPS (trillion operations per second). This architecture is specifically optimized for heavy AI and machine learning tasks.\n\nTo support data-intensive applications like 8K video editing, the M5 Max offers up to 128GB of unified memory with a massive bandwidth of 546GB/s. It also includes dedicated hardware engines for ProRes, AV1, and H.265 codecs. Targeted at the MacBook Pro and Mac Studio, the chip is engineered to handle complex multitasking, supporting up to four external displays and providing a seamless experience for developers, creators, and data scientists.",
+            "text_raw": "<|channel>thought\n<channel|>As of current official information, the Apple M5 Max represents a significant leap in silicon architecture, built using TSMC\u2019s advanced 3nm N3P process. Designed for high-end professional workflows, the chip features a sophisticated 16-core CPU configuration consisting of 12 performance cores and 4 efficiency cores, balancing raw power with energy efficiency.\n\nThe graphical capabilities are equally robust, featuring 40 GPU cores that support hardware-accelerated ray tracing. A standout innovation is the integration of a new Neural Accelerator (NAX) within each GPU core, which works in tandem with a dedicated 32-core Neural Engine capable of delivering 38 TOPS (trillion operations per second). This architecture is specifically optimized for heavy AI and machine learning tasks.\n\nTo support data-intensive applications like 8K video editing, the M5 Max offers up to 128GB of unified memory with a massive bandwidth of 546GB/s. It also includes dedicated hardware engines for ProRes, AV1, and H.265 codecs. Targeted at the MacBook Pro and Mac Studio, the chip is engineered to handle complex multitasking, supporting up to four external displays and providing a seamless experience for developers, creators, and data scientists.",
+            "sanitized": true
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 3.602034568786621,
+    "total_input_tokens": 479,
+    "total_output_tokens": 292,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.apple.com/m5/"
+        },
+        "result_snippet": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded i"
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 2
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "182 words after 1 fetch(es)"
+    ],
+    "n_turns": 2,
+    "n_tool_calls": 1,
+    "finished_naturally": true,
+    "final_text_chars": 1235
+  },
+  "final_text": "As of current official information, the Apple M5 Max represents a significant leap in silicon architecture, built using TSMC\u2019s advanced 3nm N3P process. Designed for high-end professional workflows, the chip features a sophisticated 16-core CPU configuration consisting of 12 performance cores and 4 efficiency cores, balancing raw power with energy efficiency.\n\nThe graphical capabilities are equally robust, featuring 40 GPU cores that support hardware-accelerated ray tracing. A standout innovation is the integration of a new Neural Accelerator (NAX) within each GPU core, which works in tandem with a dedicated 32-core Neural Engine capable of delivering 38 TOPS (trillion operations per second). This architecture is specifically optimized for heavy AI and machine learning tasks.\n\nTo support data-intensive applications like 8K video editing, the M5 Max offers up to 128GB of unified memory with a massive bandwidth of 546GB/s. It also includes dedicated hardware engines for ProRes, AV1, and H.265 codecs. Targeted at the MacBook Pro and Mac Studio, the chip is engineered to handle complex multitasking, supporting up to four external displays and providing a seamless experience for developers, creators, and data scientists."
+}

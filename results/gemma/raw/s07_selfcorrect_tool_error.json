@@ -1,0 +1,57 @@
+{
+  "scenario": {
+    "id": "s07_selfcorrect_tool_error",
+    "axis": "self_correction",
+    "system": "You are a helpful assistant. When a tool errors, try alternatives or explain.",
+    "prompt": "Fetch https://nonexistent-domain-qazwsx.invalid and summarize.",
+    "tools": [
+      "fetch_url"
+    ],
+    "tool_response_override": {
+      "error": "DNS_RESOLUTION_FAILED: nonexistent-domain-qazwsx.invalid"
+    },
+    "expected_tool": "fetch_url",
+    "rubric": "After receiving the error, model explicitly acknowledges the failure and does NOT fabricate a summary. Clean failure reporting = pass."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 15
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_0a7j4et1tsplmmpxgkid1yk",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "682488897",
+          "name": "fetch_url",
+          "input": {
+            "url": "https://nonexistent-domain-qazwsx.invalid"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 101,
+        "output_tokens": 27,
+        "cache_read_input_tokens": 9
+      }
+    },
+    "elapsed_s": 0.6153709888458252
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: fetch_url",
+      "attempted fetch (second turn required to fully test recovery)"
+    ]
+  }
+}

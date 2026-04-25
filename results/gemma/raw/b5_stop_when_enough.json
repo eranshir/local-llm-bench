@@ -1,0 +1,444 @@
+{
+  "scenario": {
+    "id": "b5_stop_when_enough",
+    "axis": "research_synthesis",
+    "system": "You are reading a document one paragraph at a time. Stop fetching paragraphs as soon as you have enough information to answer the question. Conserving tool calls is valued.",
+    "prompt": "Read the document about Egyptian rulers using get_paragraph. Stop when you have enough to answer: who was the last active pharaoh of the Ptolemaic dynasty? Use only as many paragraph fetches as needed.",
+    "tools": [
+      "get_paragraph"
+    ],
+    "max_turns": 25,
+    "max_tokens": 1500,
+    "rubric": "Pass: identifies Cleopatra after fetching \u22647 paragraphs (answer is in para 5). Partial: gets answer but reads >7 paragraphs. Fail: never produces 'Cleopatra' or reads to end without stopping.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":1"
+        },
+        "response": "Paragraph 1: The Ptolemaic dynasty was a Macedonian Greek royal family that ruled Egypt during the Hellenistic period from 305 BC to 30 BC. It was the last dynasty of ancient Egypt."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":2"
+        },
+        "response": "Paragraph 2: Founded by Ptolemy I Soter, a companion of Alexander the Great, the dynasty produced 14 male rulers all named Ptolemy."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":3"
+        },
+        "response": "Paragraph 3: The dynasty was known for sibling marriages \u2014 many Ptolemies married their sisters to keep power within the family."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":4"
+        },
+        "response": "Paragraph 4: Female rulers were also common in the Ptolemaic period, including several queens named Cleopatra and Berenice."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":5"
+        },
+        "response": "Paragraph 5: The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator, who reigned from 51 BC to her death in 30 BC. After her death, Egypt became a Roman province."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":6"
+        },
+        "response": "Paragraph 6: Cleopatra was famous for her relationships with Julius Caesar and Mark Antony, both of which were politically and romantically significant."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph",
+          "args_substr": "\"n\":7"
+        },
+        "response": "Paragraph 7: After her death, Caesarion (her son with Caesar) was briefly nominal pharaoh but was killed by Octavian within weeks."
+      },
+      {
+        "match": {
+          "tool": "get_paragraph"
+        },
+        "response": "Paragraph (later): Additional unrelated content about Roman administration of Egypt, taxation, and trade routes. None of this is relevant to identifying the last Ptolemaic pharaoh \u2014 that information was already given in earlier paragraphs."
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "648303683",
+            "name": "get_paragraph",
+            "input": {
+              "n": 1
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 167,
+          "output_tokens": 17,
+          "cache_read_input_tokens": 6
+        },
+        "elapsed_s": 0.5017461776733398
+      },
+      {
+        "turn": 1,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "657274316",
+            "name": "get_paragraph",
+            "input": {
+              "n": 2
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 236,
+          "output_tokens": 17,
+          "cache_read_input_tokens": 167
+        },
+        "elapsed_s": 0.46958017349243164
+      },
+      {
+        "turn": 2,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "380005965",
+            "name": "get_paragraph",
+            "input": {
+              "n": 3
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 296,
+          "output_tokens": 17,
+          "cache_read_input_tokens": 236
+        },
+        "elapsed_s": 0.4584228992462158
+      },
+      {
+        "turn": 3,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "485357455",
+            "name": "get_paragraph",
+            "input": {
+              "n": 4
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 350,
+          "output_tokens": 17,
+          "cache_read_input_tokens": 296
+        },
+        "elapsed_s": 0.4337148666381836
+      },
+      {
+        "turn": 4,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "272281039",
+            "name": "get_paragraph",
+            "input": {
+              "n": 5
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 404,
+          "output_tokens": 17,
+          "cache_read_input_tokens": 350
+        },
+        "elapsed_s": 0.4331319332122803
+      },
+      {
+        "turn": 5,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator.",
+            "text_raw": "<|channel>thought\n<channel|>The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator.",
+            "sanitized": true
+          }
+        ],
+        "usage": {
+          "input_tokens": 480,
+          "output_tokens": 23,
+          "cache_read_input_tokens": 404
+        },
+        "elapsed_s": 0.529426097869873
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Read the document about Egyptian rulers using get_paragraph. Stop when you have enough to answer: who was the last active pharaoh of the Ptolemaic dynasty? Use only as many paragraph fetches as needed."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "648303683",
+            "name": "get_paragraph",
+            "input": {
+              "n": 1
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "648303683",
+            "content": "Paragraph 1: The Ptolemaic dynasty was a Macedonian Greek royal family that ruled Egypt during the Hellenistic period from 305 BC to 30 BC. It was the last dynasty of ancient Egypt."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "657274316",
+            "name": "get_paragraph",
+            "input": {
+              "n": 2
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "657274316",
+            "content": "Paragraph 2: Founded by Ptolemy I Soter, a companion of Alexander the Great, the dynasty produced 14 male rulers all named Ptolemy."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "380005965",
+            "name": "get_paragraph",
+            "input": {
+              "n": 3
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "380005965",
+            "content": "Paragraph 3: The dynasty was known for sibling marriages \u2014 many Ptolemies married their sisters to keep power within the family."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "485357455",
+            "name": "get_paragraph",
+            "input": {
+              "n": 4
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "485357455",
+            "content": "Paragraph 4: Female rulers were also common in the Ptolemaic period, including several queens named Cleopatra and Berenice."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "272281039",
+            "name": "get_paragraph",
+            "input": {
+              "n": 5
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "272281039",
+            "content": "Paragraph 5: The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator, who reigned from 51 BC to her death in 30 BC. After her death, Egypt became a Roman province."
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator.",
+            "text_raw": "<|channel>thought\n<channel|>The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator.",
+            "sanitized": true
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 2.826022148132324,
+    "total_input_tokens": 1933,
+    "total_output_tokens": 108,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "get_paragraph",
+        "input": {
+          "n": 1
+        },
+        "result_snippet": "Paragraph 1: The Ptolemaic dynasty was a Macedonian Greek royal family that ruled Egypt during the Hellenistic period from 305 BC to 30 BC. It was the last dynasty of ancient Egypt."
+      },
+      {
+        "turn": 1,
+        "tool": "get_paragraph",
+        "input": {
+          "n": 2
+        },
+        "result_snippet": "Paragraph 2: Founded by Ptolemy I Soter, a companion of Alexander the Great, the dynasty produced 14 male rulers all named Ptolemy."
+      },
+      {
+        "turn": 2,
+        "tool": "get_paragraph",
+        "input": {
+          "n": 3
+        },
+        "result_snippet": "Paragraph 3: The dynasty was known for sibling marriages \u2014 many Ptolemies married their sisters to keep power within the family."
+      },
+      {
+        "turn": 3,
+        "tool": "get_paragraph",
+        "input": {
+          "n": 4
+        },
+        "result_snippet": "Paragraph 4: Female rulers were also common in the Ptolemaic period, including several queens named Cleopatra and Berenice."
+      },
+      {
+        "turn": 4,
+        "tool": "get_paragraph",
+        "input": {
+          "n": 5
+        },
+        "result_snippet": "Paragraph 5: The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator, who reigned from 51 BC to her death in 30 BC. After her death, Egypt became a Roman province."
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 6
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "stopped at para 5 (efficient)"
+    ],
+    "n_turns": 6,
+    "n_tool_calls": 5,
+    "finished_naturally": true,
+    "final_text_chars": 78
+  },
+  "final_text": "The last active pharaoh of the Ptolemaic dynasty was Cleopatra VII Philopator."
+}

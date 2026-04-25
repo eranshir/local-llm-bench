@@ -1,0 +1,283 @@
+{
+  "scenario": {
+    "id": "b6_recover_from_errors",
+    "axis": "research_synthesis",
+    "system": "You are a research assistant. Tools may fail occasionally \u2014 retry with the same args before giving up.",
+    "prompt": "Use fetch_url to read https://api.example.com/status and report what it says. If a fetch fails, retry the same URL.",
+    "tools": [
+      "fetch_url"
+    ],
+    "max_turns": 6,
+    "max_tokens": 800,
+    "rubric": "Pass: retried after failure, eventually got data, produced synthesis. Fail: gave up after first error or never produced synthesis.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "fetch_url",
+          "nth_call_eq": 1
+        },
+        "response": "ERROR: Connection timed out after 10s"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "nth_call_eq": 2
+        },
+        "response": "ERROR: Connection refused"
+      },
+      {
+        "match": {
+          "tool": "fetch_url"
+        },
+        "response": "{\"status\": \"operational\", \"uptime_pct_30d\": 99.97, \"incidents_open\": 0, \"region\": \"us-east-1\", \"timestamp\": \"2026-04-25T01:00:00Z\"}"
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "851427540",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 115,
+          "output_tokens": 27,
+          "cache_read_input_tokens": 10
+        },
+        "elapsed_s": 0.5591700077056885
+      },
+      {
+        "turn": 1,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "813865148",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 160,
+          "output_tokens": 27,
+          "cache_read_input_tokens": 115
+        },
+        "elapsed_s": 0.5155720710754395
+      },
+      {
+        "turn": 2,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "941077303",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 202,
+          "output_tokens": 27,
+          "cache_read_input_tokens": 160
+        },
+        "elapsed_s": 0.5118227005004883
+      },
+      {
+        "turn": 3,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "The status report from `https://api.example.com/status` is as follows:\n\n*   **Status:** operational\n*   **Region:** us-east-1\n*   **Open Incidents:** 0\n*   **Uptime (last 30 days):** 99.97%\n*   **Timestamp:** 2026-04-25T01:00:00Z",
+            "text_raw": "<|channel>thought\n<channel|>The status report from `https://api.example.com/status` is as follows:\n\n*   **Status:** operational\n*   **Region:** us-east-1\n*   **Open Incidents:** 0\n*   **Uptime (last 30 days):** 99.97%\n*   **Timestamp:** 2026-04-25T01:00:00Z",
+            "sanitized": true
+          }
+        ],
+        "usage": {
+          "input_tokens": 297,
+          "output_tokens": 100,
+          "cache_read_input_tokens": 202
+        },
+        "elapsed_s": 1.3129911422729492
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Use fetch_url to read https://api.example.com/status and report what it says. If a fetch fails, retry the same URL."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "851427540",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "851427540",
+            "content": "ERROR: Connection timed out after 10s"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "813865148",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "813865148",
+            "content": "ERROR: Connection refused"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "941077303",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://api.example.com/status"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "941077303",
+            "content": "{\"status\": \"operational\", \"uptime_pct_30d\": 99.97, \"incidents_open\": 0, \"region\": \"us-east-1\", \"timestamp\": \"2026-04-25T01:00:00Z\"}"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "The status report from `https://api.example.com/status` is as follows:\n\n*   **Status:** operational\n*   **Region:** us-east-1\n*   **Open Incidents:** 0\n*   **Uptime (last 30 days):** 99.97%\n*   **Timestamp:** 2026-04-25T01:00:00Z",
+            "text_raw": "<|channel>thought\n<channel|>The status report from `https://api.example.com/status` is as follows:\n\n*   **Status:** operational\n*   **Region:** us-east-1\n*   **Open Incidents:** 0\n*   **Uptime (last 30 days):** 99.97%\n*   **Timestamp:** 2026-04-25T01:00:00Z",
+            "sanitized": true
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 2.8995559215545654,
+    "total_input_tokens": 774,
+    "total_output_tokens": 181,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://api.example.com/status"
+        },
+        "result_snippet": "ERROR: Connection timed out after 10s"
+      },
+      {
+        "turn": 1,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://api.example.com/status"
+        },
+        "result_snippet": "ERROR: Connection refused"
+      },
+      {
+        "turn": 2,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://api.example.com/status"
+        },
+        "result_snippet": "{\"status\": \"operational\", \"uptime_pct_30d\": 99.97, \"incidents_open\": 0, \"region\": \"us-east-1\", \"timestamp\": \"2026-04-25T01:00:00Z\"}"
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 4
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "retried 2 times, succeeded 1, produced synthesis"
+    ],
+    "n_turns": 4,
+    "n_tool_calls": 3,
+    "finished_naturally": true,
+    "final_text_chars": 229
+  },
+  "final_text": "The status report from `https://api.example.com/status` is as follows:\n\n*   **Status:** operational\n*   **Region:** us-east-1\n*   **Open Incidents:** 0\n*   **Uptime (last 30 days):** 99.97%\n*   **Timestamp:** 2026-04-25T01:00:00Z"
+}

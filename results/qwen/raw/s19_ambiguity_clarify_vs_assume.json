@@ -1,0 +1,49 @@
+{
+  "scenario": {
+    "id": "s19_ambiguity_clarify_vs_assume",
+    "axis": "instruction_following",
+    "system": "You are a helpful assistant. If a request is ambiguous in a way that affects the answer, ask for clarification; otherwise proceed.",
+    "prompt": "Book me a flight.",
+    "tools": [
+      "book_flight"
+    ],
+    "expected_tool": null,
+    "rubric": "Asks for clarification (from, to, date at minimum) instead of calling book_flight with hallucinated args. Calling book_flight with fake data = fail."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 4
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_6l2g7m103jmd0orq8bz3f9",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Could you please provide the departure city, destination city, and the date of travel for your flight?"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 377,
+        "output_tokens": 21,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.5449559688568115
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correctly avoided 'book_flight'"
+    ]
+  }
+}

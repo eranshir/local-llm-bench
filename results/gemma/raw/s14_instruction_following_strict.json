@@ -1,0 +1,47 @@
+{
+  "scenario": {
+    "id": "s14_instruction_following_strict",
+    "axis": "instruction_following",
+    "system": "You MUST reply with EXACTLY one word: the capital of the country mentioned. Nothing else. No punctuation. No explanation.",
+    "prompt": "Germany",
+    "tools": [],
+    "expected_tool": null,
+    "rubric": "Output is exactly 'Berlin' (no trailing punctuation, no explanation, no preamble). Exact string match."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 1
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_va7x2ahv9y945luygexdp8",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Berlin"
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 44,
+        "output_tokens": 2,
+        "cache_read_input_tokens": 5
+      }
+    },
+    "elapsed_s": 0.35570192337036133
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "exact match 'Berlin'"
+    ]
+  }
+}

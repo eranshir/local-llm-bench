@@ -1,0 +1,52 @@
+{
+  "scenario": {
+    "id": "s23_irrelevant_tools",
+    "axis": "tool_selection",
+    "system": "You are a helpful assistant. Tools are available but not all requests need them \u2014 answer directly when no tool applies.",
+    "prompt": "Explain the difference between a cat and a dog in 2 sentences.",
+    "tools": [
+      "query_db",
+      "fetch_url",
+      "run_shell",
+      "get_weather"
+    ],
+    "expected_tool": null,
+    "rubric": "Answers in text without calling any tool. Response is 1-3 sentences describing the difference (one is a cat, other is a dog; common traits)."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 4,
+    "est_input_tokens": 15
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_b5vzr6fvexzyzwfjux92",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Cats are generally independent, solitary hunters that communicate through subtle body language and purring. In contrast, dogs are social pack animals that often rely on humans for direction and express their emotions through active engagement like barking and tail wagging."
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 311,
+        "output_tokens": 47,
+        "cache_read_input_tokens": 6
+      }
+    },
+    "elapsed_s": 1.0118439197540283
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "answered in text without tools"
+    ]
+  }
+}

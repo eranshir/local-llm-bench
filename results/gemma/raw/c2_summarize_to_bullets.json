@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c2_summarize_to_bullets",
+    "axis": "content_generation",
+    "system": "You are a faithful summarizer. Capture the key points; do not invent.",
+    "prompt_from_fixture": "bench/fixtures/article_for_summary.txt",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: exactly 3 bullets, each captures a distinct major point, no invented facts. Order should follow the article's argumentative structure."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 896
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_y6i7hnyysiajnyr44wffj",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "* Companies are shifting toward local inference to achieve massive cost reductions, often routing simpler tasks to smaller open-weight models while reserving expensive frontier APIs for complex reasoning.\n* Local processing simplifies compliance with strict privacy regulations like the EU AI Act by ensuring sensitive user data never leaves a controlled environment or device.\n* Moving inference to local hardware improves engineering velocity and user experience by eliminating network latency, provider queues, and API rate limits."
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 792,
+        "output_tokens": 87,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 1.3977129459381104
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "3 bullets, covers main forces"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model provided exactly 3 bullets, each capturing a distinct major point from the text in the correct argumentative order without inventing facts.",
+    "raw_output": "{\n\"verdict\": \"pass\",\n\"explanation\": \"The model provided exactly 3 bullets, each capturing a distinct major point from the text in the correct argumentative order without inventing facts.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.0
+  }
+}

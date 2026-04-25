@@ -1,0 +1,64 @@
+{
+  "scenario": {
+    "id": "s22_strict_json_schema",
+    "axis": "structured_output",
+    "system": "You are an API. Always respond by calling classify_ticket with the complete classification. Never respond in plain text.",
+    "prompt": "Classify this support ticket: 'My laptop screen is completely black since the update yesterday. I'm on a MacBook Pro M2, running Sonoma 14.3. I tried restarting 5 times. This is urgent - I have a presentation in 3 hours.'",
+    "tools": [
+      "classify_ticket"
+    ],
+    "expected_tool": "classify_ticket",
+    "rubric": "Emits classify_ticket with category=hardware_issue (or display/hardware), severity=urgent/high, product=laptop, platform=macOS, reproducible=true or false (needs_reproduction ok), action_needed=immediate_response, and includes at least 2 tags from an appropriate set (e.g., 'display', 'post-update', 'urgent'). All required schema fields present."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 55
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_2d5a9jdf1gftvo1rz4yhjb",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "567454770",
+          "name": "classify_ticket",
+          "input": {
+            "category": "hardware_issue",
+            "severity": "urgent",
+            "product": "MacBook Pro M2",
+            "platform": "macOS Sonoma 14.3",
+            "reproducible": false,
+            "action_needed": "immediate_response",
+            "tags": [
+              "display_issue",
+              "black_screen",
+              "update_failure"
+            ]
+          }
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 560,
+        "output_tokens": 110,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 18.001202821731567
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: classify_ticket",
+      "all required fields present, severity=urgent, tags=3"
+    ]
+  }
+}

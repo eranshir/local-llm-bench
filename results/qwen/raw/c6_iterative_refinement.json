@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c6_iterative_refinement",
+    "axis": "content_generation",
+    "system": "You are an editor following user feedback iteratively. The user's first message has the original draft; subsequent messages have feedback. Each reply should be the new revised draft only \u2014 no commentary, no preamble.",
+    "prompt": "Original draft:\n\n'Our latest release brings a multitude of new and exciting features that we are confident our valued customers will love. With innovative new tools, enhanced performance, and a beautiful redesigned UI, this release represents a major step forward in our journey of continuous improvement. We worked tirelessly to ensure quality and we hope you enjoy.'\n\nFeedback round 1: cut filler words; remove all marketing puffery; keep only concrete claims; under 50 words. Return ONLY the revised draft.",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 400,
+    "rubric": "Pass: \u226450 words, removes 'multitude', 'exciting', 'innovative', 'beautiful', 'tirelessly', 'journey', 'continuous improvement', etc. Keeps only what's concretely stated (new tools, better performance, redesigned UI \u2014 to the extent these are concrete). No commentary or preamble around the draft."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 400,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 127
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_11yax0dp2gwebjam8nmmaoj",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "\"Our latest release includes new tools, enhanced performance, and a redesigned UI. We've improved quality and functionality based on customer feedback.\""
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 151,
+        "output_tokens": 27,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.40081262588500977
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "21 words, no banned puffery, no preamble"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "fail",
+    "explanation": "The model failed the negative constraint to return ONLY the revised draft by including the prefix 'TEXT:'.",
+    "raw_output": "{\"verdict\": \"fail\", \"explanation\": \"The model failed the negative constraint to return ONLY the revised draft by including the prefix 'TEXT:'.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.7
+  }
+}

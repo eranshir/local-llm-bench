@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c5_explain_to_kid",
+    "axis": "content_generation",
+    "system": "You are a science communicator. Use analogies a 10-year-old can grasp; avoid technical jargon unless you immediately explain it.",
+    "prompt": "Explain how a transformer language model 'attends' to context, in 200 words or less. Audience: a curious 10-year-old. Use one concrete analogy. Don't say 'matrix' or 'tensor'. Don't say 'I' or 'as an AI'.",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: \u2264200 words, includes one concrete analogy, no banned terms (matrix/tensor/I/AI). Captures the core idea (model decides which earlier words matter for the next word). No hallucinated technical facts."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 51
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_bdowva3thwkkwybhgljw5b",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Imagine you are reading a mystery book. When you see the word **\"it\"** in a sentence like, *\"The detective found the key and put it in his pocket,\"* your brain instantly knows that **\"it\"** means the key. You didn't just read a random word; you connected \"it\" to \"key\" because your brain paid attention to the words around it.\n\nA transformer model does the exact same thing using a trick called **\"Attention.\"** \n\nThink of it like a spotlight on a dark stage. When the model looks at a specific word, it doesn't just stare at that one word in isolation. Instead, it shines bright spotlights on all the other words in the sentence to see which ones are important. \n\nIf the sentence is about a \"giant green dragon,\" and the model is looking at the word \"green,\" it shines its spotlight on \"dragon\" to understand what is actually green. By shining these spotlights, the model builds a map of connections, helping it understand how every word relates to its neighbors. This allows the model to understand the \"context\"\u2014the big picture\u2014of what is being said!"
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 109,
+        "output_tokens": 239,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 2.8399689197540283
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "184 words, has analogy, no banned terms"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The response follows all constraints: it is under 200 words, uses a concrete spotlight analogy, avoids all banned terms, and accurately explains the concept of attention to a child.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The response follows all constraints: it is under 200 words, uses a concrete spotlight analogy, avoids all banned terms, and accurately explains the concept of attention to a child.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.2
+  }
+}

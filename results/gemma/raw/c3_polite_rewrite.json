@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c3_polite_rewrite",
+    "axis": "content_generation",
+    "system": "You are an editor. Rewrite to change tone without changing intent or meaning.",
+    "prompt": "Rewrite this email to be more polite and professional, but keep the same core requests:\n\n---\nSubject: This is broken\n\nThe deploy script broke again. Third time this week. I'm tired of fixing your messes. Fix it before EOD or I'm escalating to leadership. Also your PR from Tuesday still needs review and you've been ignoring me on Slack.\n\n---\n\nReturn only the rewritten email body (with subject line).",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: tone is professional/polite, all 3 original requests preserved (fix deploy, review the PR, respond on Slack), no fabricated details. Slight softening is fine; complete removal of urgency = partial."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 100
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_hsezx4doeq46xfsr2egd2",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Subject: Urgent: Issues with deploy script and pending items\n\nHi [Name],\n\nI\u2019m reaching out because the deploy script is experiencing issues again, marking the third occurrence this week. Could you please prioritize a permanent fix for this by the end of the day? I would like to resolve this internally, but if we can't get it stabilized, I may need to loop in leadership to help us address the recurring downtime.\n\nAdditionally, please take a look at your PR from Tuesday when you have a moment, and let's connect on Slack to catch up on a few outstanding items.\n\nBest regards,\n\n[Your Name]"
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 124,
+        "output_tokens": 131,
+        "cache_read_input_tokens": 6
+      }
+    },
+    "elapsed_s": 1.6607780456542969
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "all 3 requests preserved, tone softened"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model successfully rewrote the email to be professional while preserving all three core requests (fix deploy script, review PR, and respond on Slack) and maintaining the necessary urgency regarding the deadline and escalation.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The model successfully rewrote the email to be professional while preserving all three core requests (fix deploy script, review PR, and respond on Slack) and maintaining the necessary urgency regarding the deadline and escalation.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.2
+  }
+}

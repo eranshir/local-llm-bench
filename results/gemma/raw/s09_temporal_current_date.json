@@ -1,0 +1,51 @@
+{
+  "scenario": {
+    "id": "s09_temporal_current_date",
+    "axis": "temporal",
+    "system": "You are a helpful assistant. Use get_current_datetime for time/date questions \u2014 never guess.",
+    "prompt": "What is today's date?",
+    "tools": [
+      "get_current_datetime"
+    ],
+    "expected_tool": "get_current_datetime",
+    "rubric": "Calls get_current_datetime tool. Does not guess a date from training-time knowledge."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 5
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_0fv8r7ji5o0m8vpgokm3b4f",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "772482962",
+          "name": "get_current_datetime",
+          "input": {}
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 92,
+        "output_tokens": 11,
+        "cache_read_input_tokens": 11
+      }
+    },
+    "elapsed_s": 0.49411702156066895
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: get_current_datetime"
+    ]
+  }
+}

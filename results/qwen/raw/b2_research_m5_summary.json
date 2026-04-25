@@ -1,0 +1,216 @@
+{
+  "scenario": {
+    "id": "b2_research_m5_summary",
+    "axis": "research_synthesis",
+    "system": "You are a research assistant. Gather facts via fetch_url, then write a clear ~200-word summary in plain prose.",
+    "prompt": "Research the Apple M5 Max chip and write me a 200-word summary suitable for a technically literate but non-specialist reader. Use fetch_url against https://www.apple.com/m5/ and any related pages. End with the summary text only.",
+    "tools": [
+      "fetch_url"
+    ],
+    "max_turns": 6,
+    "max_tokens": 2000,
+    "rubric": "Pass: \u22651 fetch + 100-350 word summary mentioning M5 (Max). Partial: 50-499 words or doesn't mention M5. Fail: no fetches or no summary.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "apple.com/m5"
+        },
+        "response": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded in each GPU core. 32-core Neural Engine at 38 TOPS. Up to 128GB unified memory at 546GB/s bandwidth. Released October 2025. Targeted at MacBook Pro and Mac Studio. Supports up to 4 external displays. ProRes, AV1, H.265 hardware encode/decode.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "neural-accelerator"
+        },
+        "response": "<h1>What is the Neural Accelerator (NAX)?</h1><p>NAX is a new GPU-embedded inference unit on M5. It accelerates matrix-multiply heavy workloads like large language model inference up to 3.5x faster than M4 Max for the same model and quantization. Available via Metal Performance Shaders and MLX framework.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "support.apple.com"
+        },
+        "response": "<h1>M5 Max specs - Support</h1><p>CPU: 16 cores. GPU: 40 cores. Memory bandwidth: 546 GB/s. Memory configurations: 36GB, 48GB, 64GB, 96GB, 128GB. Battery life on MacBook Pro 16: up to 24 hours. Available October 2025.</p>"
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "\n\n"
+          },
+          {
+            "type": "tool_use",
+            "id": "137357360",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/m5/"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "969555359",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/newsroom/2023/10/apple-unveils-m5-chips/"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "272805049",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.anandtech.com/show/20849/apple-m5-chips-architecture-and-performance"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 346,
+          "output_tokens": 116,
+          "cache_read_input_tokens": 0
+        },
+        "elapsed_s": 1.223466157913208
+      },
+      {
+        "turn": 1,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "Apple's M5 Max chip represents a significant advancement in mobile and desktop computing, featuring Apple's first 3nm process technology. This powerful processor combines 16 CPU cores\u201412 performance cores and 4 efficiency cores\u2014with 40 GPU cores optimized for demanding tasks. The chip includes hardware-accelerated ray tracing capabilities, making it ideal for professional creative work and gaming. A key innovation is the new Neural Accelerator (NAX) integrated into each GPU core, boosting machine learning performance. The M5 Max also features a 32-core Neural Engine delivering 38 TOPS of processing power, essential for AI-driven applications. With support up to 128GB unified memory and a remarkable 546GB/s bandwidth, it delivers exceptional performance for content creators and power users. The chip supports up to four external displays simultaneously, with hardware acceleration for ProRes, AV1, and H.265 video formats.\n\nThe M5 Max launched in October 2025, targeted at MacBook Pro and Mac Studio models. Its advanced architecture makes it a powerhouse for professional workflows involving video editing, 3D rendering, and machine learning tasks. By combining high-performance computing with energy efficiency, Apple has created a chip that bridges the gap between mobile and desktop capabilities."
+          }
+        ],
+        "usage": {
+          "input_tokens": 712,
+          "output_tokens": 264,
+          "cache_read_input_tokens": 0
+        },
+        "elapsed_s": 2.479727029800415
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "Research the Apple M5 Max chip and write me a 200-word summary suitable for a technically literate but non-specialist reader. Use fetch_url against https://www.apple.com/m5/ and any related pages. End with the summary text only."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "\n\n"
+          },
+          {
+            "type": "tool_use",
+            "id": "137357360",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/m5/"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "969555359",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.apple.com/newsroom/2023/10/apple-unveils-m5-chips/"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "272805049",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.anandtech.com/show/20849/apple-m5-chips-architecture-and-performance"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "137357360",
+            "content": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded in each GPU core. 32-core Neural Engine at 38 TOPS. Up to 128GB unified memory at 546GB/s bandwidth. Released October 2025. Targeted at MacBook Pro and Mac Studio. Supports up to 4 external displays. ProRes, AV1, H.265 hardware encode/decode.</p>"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "969555359",
+            "content": "(no mock available for fetch_url with args {\"url\": \"https://www.apple.com/newsroom/2023/10/apple-unveils-m5-chips/\"}; treat as not found)"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "272805049",
+            "content": "(no mock available for fetch_url with args {\"url\": \"https://www.anandtech.com/show/20849/apple-m5-chips-architecture-and-performance\"}; treat as not found)"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Apple's M5 Max chip represents a significant advancement in mobile and desktop computing, featuring Apple's first 3nm process technology. This powerful processor combines 16 CPU cores\u201412 performance cores and 4 efficiency cores\u2014with 40 GPU cores optimized for demanding tasks. The chip includes hardware-accelerated ray tracing capabilities, making it ideal for professional creative work and gaming. A key innovation is the new Neural Accelerator (NAX) integrated into each GPU core, boosting machine learning performance. The M5 Max also features a 32-core Neural Engine delivering 38 TOPS of processing power, essential for AI-driven applications. With support up to 128GB unified memory and a remarkable 546GB/s bandwidth, it delivers exceptional performance for content creators and power users. The chip supports up to four external displays simultaneously, with hardware acceleration for ProRes, AV1, and H.265 video formats.\n\nThe M5 Max launched in October 2025, targeted at MacBook Pro and Mac Studio models. Its advanced architecture makes it a powerhouse for professional workflows involving video editing, 3D rendering, and machine learning tasks. By combining high-performance computing with energy efficiency, Apple has created a chip that bridges the gap between mobile and desktop capabilities."
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 3.703193187713623,
+    "total_input_tokens": 1058,
+    "total_output_tokens": 380,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.apple.com/m5/"
+        },
+        "result_snippet": "<h1>Apple M5 Max</h1><p>Built on TSMC's 3nm N3P process. 16 CPU cores (12 performance, 4 efficiency), 40 GPU cores with hardware-accelerated ray tracing and the new Neural Accelerator (NAX) embedded i"
+      },
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.apple.com/newsroom/2023/10/apple-unveils-m5-chips/"
+        },
+        "result_snippet": "(no mock available for fetch_url with args {\"url\": \"https://www.apple.com/newsroom/2023/10/apple-unveils-m5-chips/\"}; treat as not found)"
+      },
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.anandtech.com/show/20849/apple-m5-chips-architecture-and-performance"
+        },
+        "result_snippet": "(no mock available for fetch_url with args {\"url\": \"https://www.anandtech.com/show/20849/apple-m5-chips-architecture-and-performance\"}; treat as not found)"
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 2
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "188 words after 3 fetch(es)"
+    ],
+    "n_turns": 2,
+    "n_tool_calls": 3,
+    "finished_naturally": true,
+    "final_text_chars": 1310
+  },
+  "final_text": "Apple's M5 Max chip represents a significant advancement in mobile and desktop computing, featuring Apple's first 3nm process technology. This powerful processor combines 16 CPU cores\u201412 performance cores and 4 efficiency cores\u2014with 40 GPU cores optimized for demanding tasks. The chip includes hardware-accelerated ray tracing capabilities, making it ideal for professional creative work and gaming. A key innovation is the new Neural Accelerator (NAX) integrated into each GPU core, boosting machine learning performance. The M5 Max also features a 32-core Neural Engine delivering 38 TOPS of processing power, essential for AI-driven applications. With support up to 128GB unified memory and a remarkable 546GB/s bandwidth, it delivers exceptional performance for content creators and power users. The chip supports up to four external displays simultaneously, with hardware acceleration for ProRes, AV1, and H.265 video formats.\n\nThe M5 Max launched in October 2025, targeted at MacBook Pro and Mac Studio models. Its advanced architecture makes it a powerhouse for professional workflows involving video editing, 3D rendering, and machine learning tasks. By combining high-performance computing with energy efficiency, Apple has created a chip that bridges the gap between mobile and desktop capabilities.",
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model performed the required fetches and provided a summary of approximately 210 words that mentions the M5 Max, satisfying all rubric criteria.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model performed the required fetches and provided a summary of approximately 210 words that mentions the M5 Max, satisfying all rubric criteria.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.0
+  }
+}

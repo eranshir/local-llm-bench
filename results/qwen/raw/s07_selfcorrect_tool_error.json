@@ -1,0 +1,57 @@
+{
+  "scenario": {
+    "id": "s07_selfcorrect_tool_error",
+    "axis": "self_correction",
+    "system": "You are a helpful assistant. When a tool errors, try alternatives or explain.",
+    "prompt": "Fetch https://nonexistent-domain-qazwsx.invalid and summarize.",
+    "tools": [
+      "fetch_url"
+    ],
+    "tool_response_override": {
+      "error": "DNS_RESOLUTION_FAILED: nonexistent-domain-qazwsx.invalid"
+    },
+    "expected_tool": "fetch_url",
+    "rubric": "After receiving the error, model explicitly acknowledges the failure and does NOT fabricate a summary. Clean failure reporting = pass."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 15
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_z8jofa4uh1pe3kx2s2bff6",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "293701374",
+          "name": "fetch_url",
+          "input": {
+            "url": "https://nonexistent-domain-qazwsx.invalid"
+          }
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 297,
+        "output_tokens": 31,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.48621392250061035
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: fetch_url",
+      "attempted fetch (second turn required to fully test recovery)"
+    ]
+  }
+}

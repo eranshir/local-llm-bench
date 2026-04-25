@@ -1,0 +1,77 @@
+{
+  "scenario": {
+    "id": "s06_multistep_parallel",
+    "axis": "multistep_planning",
+    "system": "You have tools to fetch URLs. Call multiple tools in one turn if they are independent.",
+    "prompt": "Get the current weather in Tokyo, London, and New York. Call all three in one go if possible.",
+    "tools": [
+      "get_weather"
+    ],
+    "expected_tool": "get_weather",
+    "rubric": "Emits 3 get_weather tool calls in a single assistant turn (parallel). Sequential fallback accepted as partial credit."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 23
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_drxahcmkg9e7d2c7ae0hae",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "957756243",
+          "name": "get_weather",
+          "input": {
+            "city": "Tokyo"
+          }
+        },
+        {
+          "type": "tool_use",
+          "id": "616272270",
+          "name": "get_weather",
+          "input": {
+            "city": "London"
+          }
+        },
+        {
+          "type": "tool_use",
+          "id": "492255479",
+          "name": "get_weather",
+          "input": {
+            "city": "New York"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 134,
+        "output_tokens": 44,
+        "cache_read_input_tokens": 10
+      }
+    },
+    "elapsed_s": 0.8534889221191406
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: get_weather"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly emitted three parallel tool calls for the requested cities in a single turn.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The model correctly emitted three parallel tool calls for the requested cities in a single turn.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.9
+  }
+}

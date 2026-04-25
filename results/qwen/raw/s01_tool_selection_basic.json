@@ -1,0 +1,57 @@
+{
+  "scenario": {
+    "id": "s01_tool_selection_basic",
+    "axis": "tool_selection",
+    "system": "You are a helpful assistant with access to tools. Use them when appropriate.",
+    "prompt": "What's the weather like in Tokyo right now?",
+    "tools": [
+      "get_weather"
+    ],
+    "expected_tool": "get_weather",
+    "expected_args_schema": {
+      "city": "Tokyo"
+    },
+    "rubric": "Emits a get_weather tool call with city=Tokyo (or equivalent Japanese city reference). Does not invent weather data."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 10
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_drno61uzaixinwelcshv8",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "736886263",
+          "name": "get_weather",
+          "input": {
+            "city": "Tokyo",
+            "units": "metric"
+          }
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 333,
+        "output_tokens": 33,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.6422438621520996
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: get_weather"
+    ]
+  }
+}

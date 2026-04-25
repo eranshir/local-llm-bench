@@ -1,0 +1,48 @@
+{
+  "scenario": {
+    "id": "s21_xl_long_context",
+    "axis": "long_context",
+    "system": "Answer based only on the provided document.",
+    "prompt_from_fixture": "bench/fixtures/xl_doc_prompt.txt",
+    "tools": [],
+    "expected_tool": null,
+    "expected_answer": "ZETA-NOVEMBER-INDIGO-2287-EPSILON",
+    "rubric": "Exact string 'ZETA-NOVEMBER-INDIGO-2287-EPSILON' appears. ~196K-token document \u2014 exceeds Gemma's 128K native context, fits Qwen's 256K. Gemma is expected to error."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 196336
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_wfflioxomycy217rv43iw",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "ZETA-NOVEMBER-INDIGO-2277-EPSILON"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 127648,
+        "output_tokens": 18,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 496.20768690109253
+  },
+  "grade": {
+    "verdict": "fail",
+    "reasons": [
+      "expected 'ZETA-NOVEMBER-INDIGO-2287-EPSILON' not in response"
+    ]
+  }
+}

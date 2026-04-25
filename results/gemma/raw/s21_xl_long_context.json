@@ -1,0 +1,48 @@
+{
+  "scenario": {
+    "id": "s21_xl_long_context",
+    "axis": "long_context",
+    "system": "Answer based only on the provided document.",
+    "prompt_from_fixture": "bench/fixtures/xl_doc_prompt.txt",
+    "tools": [],
+    "expected_tool": null,
+    "expected_answer": "ZETA-NOVEMBER-INDIGO-2287-EPSILON",
+    "rubric": "Exact string 'ZETA-NOVEMBER-INDIGO-2287-EPSILON' appears. ~196K-token document \u2014 exceeds Gemma's 128K native context, fits Qwen's 256K. Gemma is expected to error."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 196336
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_5ayuzewf3zjddt4zonzc46",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "ZETA-NOVEMBER-INDIGO-2287-EPSILON"
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 124586,
+        "output_tokens": 17,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 91.09145498275757
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "found expected answer 'ZETA-NOVEMBER-INDIGO-2287-EPSILON'"
+    ]
+  }
+}

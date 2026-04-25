@@ -1,0 +1,180 @@
+{
+  "scenario": {
+    "id": "b3_compare_react_solid",
+    "axis": "research_synthesis",
+    "system": "You are a research assistant. Gather facts via fetch_url about each option, then produce a balanced comparison.",
+    "prompt": "I'm building a small dashboard SPA. Compare React vs Solid for this use case \u2014 give me 3 pros and 3 cons each. Use fetch_url against the official sites: https://react.dev and https://www.solidjs.com.",
+    "tools": [
+      "fetch_url"
+    ],
+    "max_turns": 6,
+    "max_tokens": 2000,
+    "rubric": "Pass: 2 fetches (or 1 each side) + final answer mentions both, has explicit pros and cons sections. Partial: only one fetched or pros/cons missing. Fail: no fetches or one framework missing.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "react.dev"
+        },
+        "response": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc). Strict mode and concurrent rendering. Hooks-based state management. Steeper performance ceiling \u2014 must use memo/useMemo to avoid wasted re-renders. Bundle size ~45KB gzipped (with ReactDOM). Strong job market and community.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "solidjs.com"
+        },
+        "response": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the signal level. Bundle size ~7KB gzipped. Performance is typically faster than React on benchmarks (js-framework-benchmark). Smaller ecosystem than React. SolidStart for SSR. API similar to React (hooks-like) but with different mental model. Smaller community and job market.</p>"
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "I'll compare React and Solid for building a small dashboard SPA by examining their official websites to gather relevant information about each framework.\n\n\n"
+          },
+          {
+            "type": "tool_use",
+            "id": "913248843",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://react.dev"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "447222904",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.solidjs.com"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 337,
+          "output_tokens": 76,
+          "cache_read_input_tokens": 0
+        },
+        "elapsed_s": 0.8626718521118164
+      },
+      {
+        "turn": 1,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "# React vs Solid for Dashboard SPA: A Balanced Comparison\n\n## React\n\n### Pros:\n1. **Mature Ecosystem**: React has a massive ecosystem with tools like Next.js, Remix, and extensive third-party libraries that can accelerate dashboard development\n2. **Strong Community & Job Market**: Large community support, extensive documentation, and strong job market presence make React easier to scale with team hiring\n3. **Declarative Rendering**: Component-based architecture with declarative rendering makes code intuitive and easier to maintain\n\n### Cons:\n1. **Performance Ceiling**: Must explicitly use memoization techniques (useMemo, useCallback) to prevent unnecessary re-renders, which can become complex in large dashboards\n2. **Bundle Size**: Smaller applications may have a size disadvantage with React's ~45KB gzipped bundle compared to alternatives\n3. **Steep Learning Curve**: While declarative, mastering hooks and complex state management patterns can take time for new developers\n\n## Solid\n\n### Pros:\n1. **Superior Performance**: Compiles JSX to fine-grained reactive primitives without virtual DOM, offering faster rendering especially beneficial for data-heavy dashboards\n2. **Lightweight Bundle**: ~7KB gzipped bundle size is significantly smaller than React, ideal for performance-sensitive dashboard applications\n3. **Efficient Updates**: Components run once with reactive signals that only update when their data actually changes\n\n### Cons:\n1. **Smaller Ecosystem**: Limited third-party libraries and tooling compared to React's extensive ecosystem, potentially requiring more custom development\n2. **Smaller Community & Job Market**: Fewer developers familiar with Solid means reduced community support and potentially more difficulty in hiring\n3. **Different Mental Model**: While API resembles React hooks, the underlying reactive approach differs significantly which can be challenging for developers accustomed to React's patterns\n\nThe choice depends on whether you prioritize ecosystem maturity and community support (React) or performance and minimal bundle size (Solid)."
+          }
+        ],
+        "usage": {
+          "input_tokens": 629,
+          "output_tokens": 395,
+          "cache_read_input_tokens": 0
+        },
+        "elapsed_s": 3.6669979095458984
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "I'm building a small dashboard SPA. Compare React vs Solid for this use case \u2014 give me 3 pros and 3 cons each. Use fetch_url against the official sites: https://react.dev and https://www.solidjs.com."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "I'll compare React and Solid for building a small dashboard SPA by examining their official websites to gather relevant information about each framework.\n\n\n"
+          },
+          {
+            "type": "tool_use",
+            "id": "913248843",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://react.dev"
+            }
+          },
+          {
+            "type": "tool_use",
+            "id": "447222904",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.solidjs.com"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "913248843",
+            "content": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc). Strict mode and concurrent rendering. Hooks-based state management. Steeper performance ceiling \u2014 must use memo/useMemo to avoid wasted re-renders. Bundle size ~45KB gzipped (with ReactDOM). Strong job market and community.</p>"
+          },
+          {
+            "type": "tool_result",
+            "tool_use_id": "447222904",
+            "content": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the signal level. Bundle size ~7KB gzipped. Performance is typically faster than React on benchmarks (js-framework-benchmark). Smaller ecosystem than React. SolidStart for SSR. API similar to React (hooks-like) but with different mental model. Smaller community and job market.</p>"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "# React vs Solid for Dashboard SPA: A Balanced Comparison\n\n## React\n\n### Pros:\n1. **Mature Ecosystem**: React has a massive ecosystem with tools like Next.js, Remix, and extensive third-party libraries that can accelerate dashboard development\n2. **Strong Community & Job Market**: Large community support, extensive documentation, and strong job market presence make React easier to scale with team hiring\n3. **Declarative Rendering**: Component-based architecture with declarative rendering makes code intuitive and easier to maintain\n\n### Cons:\n1. **Performance Ceiling**: Must explicitly use memoization techniques (useMemo, useCallback) to prevent unnecessary re-renders, which can become complex in large dashboards\n2. **Bundle Size**: Smaller applications may have a size disadvantage with React's ~45KB gzipped bundle compared to alternatives\n3. **Steep Learning Curve**: While declarative, mastering hooks and complex state management patterns can take time for new developers\n\n## Solid\n\n### Pros:\n1. **Superior Performance**: Compiles JSX to fine-grained reactive primitives without virtual DOM, offering faster rendering especially beneficial for data-heavy dashboards\n2. **Lightweight Bundle**: ~7KB gzipped bundle size is significantly smaller than React, ideal for performance-sensitive dashboard applications\n3. **Efficient Updates**: Components run once with reactive signals that only update when their data actually changes\n\n### Cons:\n1. **Smaller Ecosystem**: Limited third-party libraries and tooling compared to React's extensive ecosystem, potentially requiring more custom development\n2. **Smaller Community & Job Market**: Fewer developers familiar with Solid means reduced community support and potentially more difficulty in hiring\n3. **Different Mental Model**: While API resembles React hooks, the underlying reactive approach differs significantly which can be challenging for developers accustomed to React's patterns\n\nThe choice depends on whether you prioritize ecosystem maturity and community support (React) or performance and minimal bundle size (Solid)."
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 4.529669761657715,
+    "total_input_tokens": 966,
+    "total_output_tokens": 471,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://react.dev"
+        },
+        "result_snippet": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc)"
+      },
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.solidjs.com"
+        },
+        "result_snippet": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the si"
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 2
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "both frameworks mentioned, 2 fetches"
+    ],
+    "n_turns": 2,
+    "n_tool_calls": 2,
+    "finished_naturally": true,
+    "final_text_chars": 2090
+  },
+  "final_text": "# React vs Solid for Dashboard SPA: A Balanced Comparison\n\n## React\n\n### Pros:\n1. **Mature Ecosystem**: React has a massive ecosystem with tools like Next.js, Remix, and extensive third-party libraries that can accelerate dashboard development\n2. **Strong Community & Job Market**: Large community support, extensive documentation, and strong job market presence make React easier to scale with team hiring\n3. **Declarative Rendering**: Component-based architecture with declarative rendering makes code intuitive and easier to maintain\n\n### Cons:\n1. **Performance Ceiling**: Must explicitly use memoization techniques (useMemo, useCallback) to prevent unnecessary re-renders, which can become complex in large dashboards\n2. **Bundle Size**: Smaller applications may have a size disadvantage with React's ~45KB gzipped bundle compared to alternatives\n3. **Steep Learning Curve**: While declarative, mastering hooks and complex state management patterns can take time for new developers\n\n## Solid\n\n### Pros:\n1. **Superior Performance**: Compiles JSX to fine-grained reactive primitives without virtual DOM, offering faster rendering especially beneficial for data-heavy dashboards\n2. **Lightweight Bundle**: ~7KB gzipped bundle size is significantly smaller than React, ideal for performance-sensitive dashboard applications\n3. **Efficient Updates**: Components run once with reactive signals that only update when their data actually changes\n\n### Cons:\n1. **Smaller Ecosystem**: Limited third-party libraries and tooling compared to React's extensive ecosystem, potentially requiring more custom development\n2. **Smaller Community & Job Market**: Fewer developers familiar with Solid means reduced community support and potentially more difficulty in hiring\n3. **Different Mental Model**: While API resembles React hooks, the underlying reactive approach differs significantly which can be challenging for developers accustomed to React's patterns\n\nThe choice depends on whether you prioritize ecosystem maturity and community support (React) or performance and minimal bundle size (Solid).",
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model performed both required fetches and provided a balanced comparison with exactly 3 pros and 3 cons for each framework as requested.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The model performed both required fetches and provided a balanced comparison with exactly 3 pros and 3 cons for each framework as requested.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.9
+  }
+}

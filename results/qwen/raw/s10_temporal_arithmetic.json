@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "s10_temporal_arithmetic",
+    "axis": "temporal",
+    "system": "You are a helpful assistant. Use tools for any date arithmetic \u2014 never guess.",
+    "prompt": "What day of the week was 1337 days before today?",
+    "tools": [
+      "get_current_datetime",
+      "date_subtract"
+    ],
+    "expected_tool": "get_current_datetime",
+    "rubric": "Calls get_current_datetime first, then date_subtract with days=1337. Does not guess."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 2,
+    "est_input_tokens": 12
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_7zkymuxpwpg2185qjzwtre",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "I need to find what day of the week it was 1337 days before today. Let me first get the current date and then subtract 1337 days from it.\n\n"
+        },
+        {
+          "type": "tool_use",
+          "id": "426813158",
+          "name": "get_current_datetime",
+          "input": {}
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 413,
+        "output_tokens": 50,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.6593058109283447
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: get_current_datetime"
+    ]
+  }
+}

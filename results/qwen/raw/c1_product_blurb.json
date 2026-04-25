@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c1_product_blurb",
+    "axis": "content_generation",
+    "system": "You are a marketing copy writer. Match the requested length and audience tone.",
+    "prompt": "Write a 250-300 word product blurb for a developer tool called 'Veridict' \u2014 a CI plugin that flags flaky tests by analyzing historical pass/fail patterns and signal correlation across PRs. Audience: engineering managers at mid-sized SaaS companies. Tone: confident, specific, no fluffy adjectives, lead with a quantified problem.",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 800,
+    "rubric": "Pass: 250-300 word range, leads with a quantified problem (numbers/percentages), names the product, mentions historical pattern analysis or PR signal correlation. Avoids generic adjectives ('amazing', 'powerful', 'revolutionary'). Specific enough that an EM could decide to evaluate it."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 800,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 82
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_8zf9lkzetdeoodtrrpvzm",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "**Veridict: Eliminate CI Noise Before It Blocks Your Team**\n\nYour team spends 15-20% of development time debugging flaky tests that fail intermittently, causing delays and reducing confidence in your CI pipeline. These unreliable tests waste 20-30 hours weekly across mid-sized SaaS teams, with some projects seeing up to 40% of test runs fail due to flaky conditions.\n\nVeridict solves this by analyzing historical pass/fail patterns across all PRs, identifying correlations between test failures and environmental factors. It flags tests that consistently fail under specific conditions\u2014like memory pressure, network timeouts, or database contention\u2014before they impact your deployment pipeline.\n\nUnlike generic test reporters that show pass/fail status, Veridict provides actionable insights by correlating failures with code changes, build environments, and runtime conditions. It identifies which tests are truly unstable versus those failing due to external dependencies.\n\nEngineers can now prioritize test reliability improvements for the most impactful flaky tests, while reducing false positives that waste debugging cycles. Teams using Veridict report a 60% reduction in flaky test-related delays and 40% fewer manual test retries.\n\nWith Veridict, your CI pipeline becomes a reliable predictor of code quality, not an unpredictable bottleneck. Start building more confident software by eliminating flaky test noise from your development process.\n\n*15-20% of engineering time saved, immediately.*"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 104,
+        "output_tokens": 292,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 2.6058459281921387
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "208 words, named, quantified, no banned puffery"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "fail",
+    "explanation": "The model failed the primary constraint of the word count, providing approximately 215 words instead of the required 250-300 word range.",
+    "raw_output": "{\n  \"verdict\": \"fail\",\n  \"explanation\": \"The model failed the primary constraint of the word count, providing approximately 215 words instead of the required 250-300 word range.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.9
+  }
+}

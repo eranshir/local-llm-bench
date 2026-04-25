@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c4_notes_to_agenda",
+    "axis": "content_generation",
+    "system": "You are an executive assistant. Extract structure from messy notes.",
+    "prompt": "Convert these meeting notes into a structured meeting agenda with sections (Discussion, Decisions, Action Items). Keep the meeting title 'Mobile launch sync \u2014 2026-04-23'.\n\n---\nmobile launch sync 4/23. ali: ios build still failing on m1 but works on m2 - weird. need to investigate. dec: paul will do that by friday. ben: app store review is taking 2 days longer than usual, we should pad timelines. dec: launch slipped to may 12. amanda wants marketing copy by may 1. unresolved: do we ship dark mode in v1 or v2? need design input. ali to ping nat. paul: should we add crash reporting before launch? everyone said yes. paul will pick a vendor. revenue forecast for q3 was discussed - tabled until next week with cfo.\n---",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 800,
+    "rubric": "Pass: 3 clearly-labeled sections (Discussion / Decisions / Action Items), action items have owner + due date where given, dark mode listed as unresolved, revenue forecast deferred. No invented owners or dates."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 800,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 180
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_9stnbifc8ht23k44xjf6d2",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "# Mobile Launch Sync \u2014 2026-04-23\n\n## Discussion\n- **iOS Build Issues**: Ali reports iOS build failing on M1 but working on M2 hardware - issue requires investigation\n- **App Store Review Timeline**: Ben notes app store review taking 2 days longer than usual\n- **Dark Mode Implementation**: Question remaining about shipping dark mode in v1 or v2 - requires design input\n- **Crash Reporting**: Discussion about adding crash reporting before launch\n- **Q3 Revenue Forecast**: Topic was discussed but deferred to next week with CFO\n\n## Decisions\n- **Build Investigation**: Paul will investigate iOS build failure on M1 hardware by Friday\n- **Launch Timeline Adjustment**: Launch date slipped from original timeline to May 12\n- **Marketing Copy Deadline**: Marketing copy needed by May 1\n- **Crash Reporting Implementation**: Decision made to add crash reporting before launch\n- **Design Input Required**: Need design input on dark mode implementation timing\n\n## Action Items\n- **Paul**: Investigate iOS build failure on M1 hardware (due Friday)\n- **Ali**: Ping Nat for design input on dark mode implementation\n- **Paul**: Select crash reporting vendor\n- **Marketing Team**: Provide marketing copy by May 1\n- **CFO**: Review Q3 revenue forecast (next week)"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 206,
+        "output_tokens": 277,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 2.546355962753296
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "3 sections present, dark mode listed, revenue deferred"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly extracted all required sections, included the specific unresolved dark mode question and deferred revenue forecast, and accurately assigned owners and dates without inventing information.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model correctly extracted all required sections, included the specific unresolved dark mode question and deferred revenue forecast, and accurately assigned owners and dates without inventing information.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.1
+  }
+}

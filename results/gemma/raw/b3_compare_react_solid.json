@@ -1,0 +1,214 @@
+{
+  "scenario": {
+    "id": "b3_compare_react_solid",
+    "axis": "research_synthesis",
+    "system": "You are a research assistant. Gather facts via fetch_url about each option, then produce a balanced comparison.",
+    "prompt": "I'm building a small dashboard SPA. Compare React vs Solid for this use case \u2014 give me 3 pros and 3 cons each. Use fetch_url against the official sites: https://react.dev and https://www.solidjs.com.",
+    "tools": [
+      "fetch_url"
+    ],
+    "max_turns": 6,
+    "max_tokens": 2000,
+    "rubric": "Pass: 2 fetches (or 1 each side) + final answer mentions both, has explicit pros and cons sections. Partial: only one fetched or pros/cons missing. Fail: no fetches or one framework missing.",
+    "mock_tool_responses": [
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "react.dev"
+        },
+        "response": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc). Strict mode and concurrent rendering. Hooks-based state management. Steeper performance ceiling \u2014 must use memo/useMemo to avoid wasted re-renders. Bundle size ~45KB gzipped (with ReactDOM). Strong job market and community.</p>"
+      },
+      {
+        "match": {
+          "tool": "fetch_url",
+          "url_substr": "solidjs.com"
+        },
+        "response": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the signal level. Bundle size ~7KB gzipped. Performance is typically faster than React on benchmarks (js-framework-benchmark). Smaller ecosystem than React. SolidStart for SSR. API similar to React (hooks-like) but with different mental model. Smaller community and job market.</p>"
+      }
+    ]
+  },
+  "run": {
+    "ok": true,
+    "transcript": [
+      {
+        "turn": 0,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "749457916",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://react.dev"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 139,
+          "output_tokens": 23,
+          "cache_read_input_tokens": 138
+        },
+        "elapsed_s": 0.372711181640625
+      },
+      {
+        "turn": 1,
+        "stop_reason": "tool_use",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "437951292",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.solidjs.com"
+            }
+          }
+        ],
+        "usage": {
+          "input_tokens": 266,
+          "output_tokens": 26,
+          "cache_read_input_tokens": 265
+        },
+        "elapsed_s": 0.40343618392944336
+      },
+      {
+        "turn": 2,
+        "stop_reason": "end_turn",
+        "content": [
+          {
+            "type": "text",
+            "text": "Based on the documentation from [react.dev](https://react.dev) and [solidjs.com](https://www.solidjs.com), here is a balanced comparison for your small dashboard SPA.\n\n### **React**\nReact uses a **Virtual DOM** and a reconciliation process to determine which parts of the UI need updating. It relies on a \"top-down\" re-rendering model where components re-execute when state changes.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Massive Ecosystem:** Access to an endless supply of pre-built dashboard components (charts, data grids, UI kits like MUI or Shadcn/ui). | **Performance Overhead:** Because components re-run on every state change, you often need to manually optimize with `memo`, `useMemo`, and `useCallback`. |\n| **Proven Stability & Talent:** Extremely mature with extensive documentation, community support, and a massive pool of developers for hiring. | **Complexity of Hooks:** Managing dependency arrays in `useEffect` and other hooks can lead to subtle bugs (stale closures or infinite loops). |\n| **Rich Tooling:** Superior debugging tools (React DevTools) and robust frameworks like Next.js or Remix if your dashboard grows into a full-scale app. | **Larger Bundle Size:** The inclusion of the Virtual DOM and reconciliation engine results in a larger initial payload compared to fine-grained libraries. |\n\n---\n\n### **SolidJS**\nSolidJS uses **Fine-Grained Reactivity**. Instead of a Virtual DOM, it compiles your code into direct DOM updates. Components run only **once** to set up the reactive graph, and then only the specific pieces of data that change trigger updates.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Superior Performance:** By bypassing the Virtual DOM and updating only the specific nodes that change, it offers near-vanilla JS speeds. | **Smaller Ecosystem:** You will likely have to build more custom components or wrap existing vanilla JS libraries, as there are fewer \"plug-and-play\" dashboard kits. |\n| **Predictable Reactivity:** Since components only run once, you don't have to worry about \"re-render loops\" or complex dependency arrays in the same way you do in React. | **Smaller Community/Job Market:** Finding specialized help or hiring developers with deep SolidJS experience is more difficult than finding React devs. |\n| **Tiny Bundle Size:** The compiled output is extremely lightweight, which is ideal for a fast-loading SPA. | **Different Mental Model:** While the syntax looks like React, you cannot use destructuring on props (as it breaks reactivity), which can be a hurdle for React developers. |\n\n### **Summary Recommendation**\n*   **Choose React if:** You want to move fast by using existing UI libraries (like Recharts or AG Grid) and prioritize a massive ecosystem over raw execution speed.\n*   **Choose Solid if:** You want maximum performance, a lightweight bundle, and prefer a model where you don't have to constantly fight \"unnecessary re-renders.\"",
+            "text_raw": "<|channel>thought\n<channel|>Based on the documentation from [react.dev](https://react.dev) and [solidjs.com](https://www.solidjs.com), here is a balanced comparison for your small dashboard SPA.\n\n### **React**\nReact uses a **Virtual DOM** and a reconciliation process to determine which parts of the UI need updating. It relies on a \"top-down\" re-rendering model where components re-execute when state changes.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Massive Ecosystem:** Access to an endless supply of pre-built dashboard components (charts, data grids, UI kits like MUI or Shadcn/ui). | **Performance Overhead:** Because components re-run on every state change, you often need to manually optimize with `memo`, `useMemo`, and `useCallback`. |\n| **Proven Stability & Talent:** Extremely mature with extensive documentation, community support, and a massive pool of developers for hiring. | **Complexity of Hooks:** Managing dependency arrays in `useEffect` and other hooks can lead to subtle bugs (stale closures or infinite loops). |\n| **Rich Tooling:** Superior debugging tools (React DevTools) and robust frameworks like Next.js or Remix if your dashboard grows into a full-scale app. | **Larger Bundle Size:** The inclusion of the Virtual DOM and reconciliation engine results in a larger initial payload compared to fine-grained libraries. |\n\n---\n\n### **SolidJS**\nSolidJS uses **Fine-Grained Reactivity**. Instead of a Virtual DOM, it compiles your code into direct DOM updates. Components run only **once** to set up the reactive graph, and then only the specific pieces of data that change trigger updates.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Superior Performance:** By bypassing the Virtual DOM and updating only the specific nodes that change, it offers near-vanilla JS speeds. | **Smaller Ecosystem:** You will likely have to build more custom components or wrap existing vanilla JS libraries, as there are fewer \"plug-and-play\" dashboard kits. |\n| **Predictable Reactivity:** Since components only run once, you don't have to worry about \"re-render loops\" or complex dependency arrays in the same way you do in React. | **Smaller Community/Job Market:** Finding specialized help or hiring developers with deep SolidJS experience is more difficult than finding React devs. |\n| **Tiny Bundle Size:** The compiled output is extremely lightweight, which is ideal for a fast-loading SPA. | **Different Mental Model:** While the syntax looks like React, you cannot use destructuring on props (as it breaks reactivity), which can be a hurdle for React developers. |\n\n### **Summary Recommendation**\n*   **Choose React if:** You want to move fast by using existing UI libraries (like Recharts or AG Grid) and prioritize a massive ecosystem over raw execution speed.\n*   **Choose Solid if:** You want maximum performance, a lightweight bundle, and prefer a model where you don't have to constantly fight \"unnecessary re-renders.\"",
+            "sanitized": true
+          }
+        ],
+        "usage": {
+          "input_tokens": 406,
+          "output_tokens": 657,
+          "cache_read_input_tokens": 405
+        },
+        "elapsed_s": 7.546663761138916
+      }
+    ],
+    "messages": [
+      {
+        "role": "user",
+        "content": "I'm building a small dashboard SPA. Compare React vs Solid for this use case \u2014 give me 3 pros and 3 cons each. Use fetch_url against the official sites: https://react.dev and https://www.solidjs.com."
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "749457916",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://react.dev"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "749457916",
+            "content": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc). Strict mode and concurrent rendering. Hooks-based state management. Steeper performance ceiling \u2014 must use memo/useMemo to avoid wasted re-renders. Bundle size ~45KB gzipped (with ReactDOM). Strong job market and community.</p>"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "",
+            "text_raw": "<|channel>thought\n<channel|>",
+            "sanitized": true
+          },
+          {
+            "type": "tool_use",
+            "id": "437951292",
+            "name": "fetch_url",
+            "input": {
+              "url": "https://www.solidjs.com"
+            }
+          }
+        ]
+      },
+      {
+        "role": "user",
+        "content": [
+          {
+            "type": "tool_result",
+            "tool_use_id": "437951292",
+            "content": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the signal level. Bundle size ~7KB gzipped. Performance is typically faster than React on benchmarks (js-framework-benchmark). Smaller ecosystem than React. SolidStart for SSR. API similar to React (hooks-like) but with different mental model. Smaller community and job market.</p>"
+          }
+        ]
+      },
+      {
+        "role": "assistant",
+        "content": [
+          {
+            "type": "text",
+            "text": "Based on the documentation from [react.dev](https://react.dev) and [solidjs.com](https://www.solidjs.com), here is a balanced comparison for your small dashboard SPA.\n\n### **React**\nReact uses a **Virtual DOM** and a reconciliation process to determine which parts of the UI need updating. It relies on a \"top-down\" re-rendering model where components re-execute when state changes.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Massive Ecosystem:** Access to an endless supply of pre-built dashboard components (charts, data grids, UI kits like MUI or Shadcn/ui). | **Performance Overhead:** Because components re-run on every state change, you often need to manually optimize with `memo`, `useMemo`, and `useCallback`. |\n| **Proven Stability & Talent:** Extremely mature with extensive documentation, community support, and a massive pool of developers for hiring. | **Complexity of Hooks:** Managing dependency arrays in `useEffect` and other hooks can lead to subtle bugs (stale closures or infinite loops). |\n| **Rich Tooling:** Superior debugging tools (React DevTools) and robust frameworks like Next.js or Remix if your dashboard grows into a full-scale app. | **Larger Bundle Size:** The inclusion of the Virtual DOM and reconciliation engine results in a larger initial payload compared to fine-grained libraries. |\n\n---\n\n### **SolidJS**\nSolidJS uses **Fine-Grained Reactivity**. Instead of a Virtual DOM, it compiles your code into direct DOM updates. Components run only **once** to set up the reactive graph, and then only the specific pieces of data that change trigger updates.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Superior Performance:** By bypassing the Virtual DOM and updating only the specific nodes that change, it offers near-vanilla JS speeds. | **Smaller Ecosystem:** You will likely have to build more custom components or wrap existing vanilla JS libraries, as there are fewer \"plug-and-play\" dashboard kits. |\n| **Predictable Reactivity:** Since components only run once, you don't have to worry about \"re-render loops\" or complex dependency arrays in the same way you do in React. | **Smaller Community/Job Market:** Finding specialized help or hiring developers with deep SolidJS experience is more difficult than finding React devs. |\n| **Tiny Bundle Size:** The compiled output is extremely lightweight, which is ideal for a fast-loading SPA. | **Different Mental Model:** While the syntax looks like React, you cannot use destructuring on props (as it breaks reactivity), which can be a hurdle for React developers. |\n\n### **Summary Recommendation**\n*   **Choose React if:** You want to move fast by using existing UI libraries (like Recharts or AG Grid) and prioritize a massive ecosystem over raw execution speed.\n*   **Choose Solid if:** You want maximum performance, a lightweight bundle, and prefer a model where you don't have to constantly fight \"unnecessary re-renders.\"",
+            "text_raw": "<|channel>thought\n<channel|>Based on the documentation from [react.dev](https://react.dev) and [solidjs.com](https://www.solidjs.com), here is a balanced comparison for your small dashboard SPA.\n\n### **React**\nReact uses a **Virtual DOM** and a reconciliation process to determine which parts of the UI need updating. It relies on a \"top-down\" re-rendering model where components re-execute when state changes.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Massive Ecosystem:** Access to an endless supply of pre-built dashboard components (charts, data grids, UI kits like MUI or Shadcn/ui). | **Performance Overhead:** Because components re-run on every state change, you often need to manually optimize with `memo`, `useMemo`, and `useCallback`. |\n| **Proven Stability & Talent:** Extremely mature with extensive documentation, community support, and a massive pool of developers for hiring. | **Complexity of Hooks:** Managing dependency arrays in `useEffect` and other hooks can lead to subtle bugs (stale closures or infinite loops). |\n| **Rich Tooling:** Superior debugging tools (React DevTools) and robust frameworks like Next.js or Remix if your dashboard grows into a full-scale app. | **Larger Bundle Size:** The inclusion of the Virtual DOM and reconciliation engine results in a larger initial payload compared to fine-grained libraries. |\n\n---\n\n### **SolidJS**\nSolidJS uses **Fine-Grained Reactivity**. Instead of a Virtual DOM, it compiles your code into direct DOM updates. Components run only **once** to set up the reactive graph, and then only the specific pieces of data that change trigger updates.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Superior Performance:** By bypassing the Virtual DOM and updating only the specific nodes that change, it offers near-vanilla JS speeds. | **Smaller Ecosystem:** You will likely have to build more custom components or wrap existing vanilla JS libraries, as there are fewer \"plug-and-play\" dashboard kits. |\n| **Predictable Reactivity:** Since components only run once, you don't have to worry about \"re-render loops\" or complex dependency arrays in the same way you do in React. | **Smaller Community/Job Market:** Finding specialized help or hiring developers with deep SolidJS experience is more difficult than finding React devs. |\n| **Tiny Bundle Size:** The compiled output is extremely lightweight, which is ideal for a fast-loading SPA. | **Different Mental Model:** While the syntax looks like React, you cannot use destructuring on props (as it breaks reactivity), which can be a hurdle for React developers. |\n\n### **Summary Recommendation**\n*   **Choose React if:** You want to move fast by using existing UI libraries (like Recharts or AG Grid) and prioritize a massive ecosystem over raw execution speed.\n*   **Choose Solid if:** You want maximum performance, a lightweight bundle, and prefer a model where you don't have to constantly fight \"unnecessary re-renders.\"",
+            "sanitized": true
+          }
+        ]
+      }
+    ],
+    "total_elapsed_s": 8.322811126708984,
+    "total_input_tokens": 811,
+    "total_output_tokens": 706,
+    "tool_call_history": [
+      {
+        "turn": 0,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://react.dev"
+        },
+        "result_snippet": "<h1>React</h1><p>React is a JavaScript library for building user interfaces. Component-based with declarative rendering. Uses a virtual DOM with reconciliation. Massive ecosystem (Next.js, Remix, etc)"
+      },
+      {
+        "turn": 1,
+        "tool": "fetch_url",
+        "input": {
+          "url": "https://www.solidjs.com"
+        },
+        "result_snippet": "<h1>Solid</h1><p>Solid is a declarative JavaScript library for creating user interfaces. Compiles JSX to fine-grained reactive primitives \u2014 no virtual DOM. Components run once; reactivity is at the si"
+      }
+    ],
+    "finished_naturally": true,
+    "n_turns": 3
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "both frameworks mentioned, 2 fetches"
+    ],
+    "n_turns": 3,
+    "n_tool_calls": 2,
+    "finished_naturally": true,
+    "final_text_chars": 2917
+  },
+  "final_text": "Based on the documentation from [react.dev](https://react.dev) and [solidjs.com](https://www.solidjs.com), here is a balanced comparison for your small dashboard SPA.\n\n### **React**\nReact uses a **Virtual DOM** and a reconciliation process to determine which parts of the UI need updating. It relies on a \"top-down\" re-rendering model where components re-execute when state changes.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Massive Ecosystem:** Access to an endless supply of pre-built dashboard components (charts, data grids, UI kits like MUI or Shadcn/ui). | **Performance Overhead:** Because components re-run on every state change, you often need to manually optimize with `memo`, `useMemo`, and `useCallback`. |\n| **Proven Stability & Talent:** Extremely mature with extensive documentation, community support, and a massive pool of developers for hiring. | **Complexity of Hooks:** Managing dependency arrays in `useEffect` and other hooks can lead to subtle bugs (stale closures or infinite loops). |\n| **Rich Tooling:** Superior debugging tools (React DevTools) and robust frameworks like Next.js or Remix if your dashboard grows into a full-scale app. | **Larger Bundle Size:** The inclusion of the Virtual DOM and reconciliation engine results in a larger initial payload compared to fine-grained libraries. |\n\n---\n\n### **SolidJS**\nSolidJS uses **Fine-Grained Reactivity**. Instead of a Virtual DOM, it compiles your code into direct DOM updates. Components run only **once** to set up the reactive graph, and then only the specific pieces of data that change trigger updates.\n\n| **Pros** | **Cons** |\n| :--- | :--- |\n| **Superior Performance:** By bypassing the Virtual DOM and updating only the specific nodes that change, it offers near-vanilla JS speeds. | **Smaller Ecosystem:** You will likely have to build more custom components or wrap existing vanilla JS libraries, as there are fewer \"plug-and-play\" dashboard kits. |\n| **Predictable Reactivity:** Since components only run once, you don't have to worry about \"re-render loops\" or complex dependency arrays in the same way you do in React. | **Smaller Community/Job Market:** Finding specialized help or hiring developers with deep SolidJS experience is more difficult than finding React devs. |\n| **Tiny Bundle Size:** The compiled output is extremely lightweight, which is ideal for a fast-loading SPA. | **Different Mental Model:** While the syntax looks like React, you cannot use destructuring on props (as it breaks reactivity), which can be a hurdle for React developers. |\n\n### **Summary Recommendation**\n*   **Choose React if:** You want to move fast by using existing UI libraries (like Recharts or AG Grid) and prioritize a massive ecosystem over raw execution speed.\n*   **Choose Solid if:** You want maximum performance, a lightweight bundle, and prefer a model where you don't have to constantly fight \"unnecessary re-renders.\""
+}

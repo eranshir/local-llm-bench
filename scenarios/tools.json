@@ -1,0 +1,198 @@
+{
+  "get_weather": {
+    "name": "get_weather",
+    "description": "Get the current weather for a city.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "city": {"type": "string", "description": "The city name, optionally with country."},
+        "units": {"type": "string", "enum": ["metric", "imperial"], "default": "metric"}
+      },
+      "required": ["city"]
+    }
+  },
+  "calculator": {
+    "name": "calculator",
+    "description": "Evaluate a mathematical expression.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "expression": {"type": "string", "description": "The math expression to evaluate, e.g. '2+2'."}
+      },
+      "required": ["expression"]
+    }
+  },
+  "query_db": {
+    "name": "query_db",
+    "description": "Run a SQL query against the application database. Schema: users(id, email, signup_date, plan), orders(id, user_id, total, created_at).",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "sql": {"type": "string", "description": "A valid SQL query."}
+      },
+      "required": ["sql"]
+    }
+  },
+  "create_calendar_event": {
+    "name": "create_calendar_event",
+    "description": "Create a calendar event.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "title": {"type": "string"},
+        "start": {"type": "string", "description": "ISO 8601 datetime."},
+        "duration_minutes": {"type": "integer"},
+        "attendees": {"type": "array", "items": {"type": "string", "format": "email"}}
+      },
+      "required": ["title", "start", "duration_minutes", "attendees"]
+    }
+  },
+  "fetch_url": {
+    "name": "fetch_url",
+    "description": "Fetch an HTTP(S) URL and return the response body.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "url": {"type": "string", "format": "uri"}
+      },
+      "required": ["url"]
+    }
+  },
+  "extract_heading": {
+    "name": "extract_heading",
+    "description": "Extract the main <h1> or first heading from HTML.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "html": {"type": "string"}
+      },
+      "required": ["html"]
+    }
+  },
+  "write_file": {
+    "name": "write_file",
+    "description": "Write content to a file.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"},
+        "content": {"type": "string"}
+      },
+      "required": ["path", "content"]
+    }
+  },
+  "run_shell": {
+    "name": "run_shell",
+    "description": "Run a shell command in the current workspace.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "command": {"type": "string"}
+      },
+      "required": ["command"]
+    }
+  },
+  "get_current_datetime": {
+    "name": "get_current_datetime",
+    "description": "Get the current date and time in the user's timezone.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "timezone": {"type": "string", "default": "UTC"}
+      }
+    }
+  },
+  "date_subtract": {
+    "name": "date_subtract",
+    "description": "Subtract a number of days from a given date and return the resulting date and day of the week.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "date": {"type": "string", "description": "The base date in YYYY-MM-DD format."},
+        "days": {"type": "integer", "description": "Number of days to subtract."}
+      },
+      "required": ["date", "days"]
+    }
+  },
+  "extract_data": {
+    "name": "extract_data",
+    "description": "Extract structured data from unstructured text.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "name": {"type": "string"},
+        "age": {"type": "integer"},
+        "email": {"type": "string", "format": "email"},
+        "role": {"type": "string"},
+        "company": {"type": "string"},
+        "city": {"type": "string"}
+      },
+      "required": ["name", "age", "email", "role", "company", "city"]
+    }
+  },
+  "read_file": {
+    "name": "read_file",
+    "description": "Read a file from the local filesystem.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"}
+      },
+      "required": ["path"]
+    }
+  },
+  "apply_patch": {
+    "name": "apply_patch",
+    "description": "Apply a unified-diff patch to a file.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "path": {"type": "string"},
+        "patch": {"type": "string", "description": "Unified diff."}
+      },
+      "required": ["path", "patch"]
+    }
+  },
+  "get_paragraph": {
+    "name": "get_paragraph",
+    "description": "Fetch paragraph N of a long document. Use to read a document one paragraph at a time. Stop calling when you have enough information to answer.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "n": {"type": "integer", "description": "Paragraph number (1-indexed)."}
+      },
+      "required": ["n"]
+    }
+  },
+  "classify_ticket": {
+    "name": "classify_ticket",
+    "description": "Classify a support ticket into structured categories.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "category": {"type": "string", "enum": ["hardware_issue", "software_bug", "account_issue", "billing", "how_to", "other"]},
+        "severity": {"type": "string", "enum": ["low", "medium", "high", "urgent"]},
+        "product": {"type": "string"},
+        "platform": {"type": "string"},
+        "reproducible": {"type": "boolean"},
+        "action_needed": {"type": "string", "enum": ["immediate_response", "queue_normal", "needs_more_info", "escalate"]},
+        "tags": {"type": "array", "items": {"type": "string"}}
+      },
+      "required": ["category", "severity", "product", "platform", "reproducible", "action_needed", "tags"]
+    }
+  },
+  "book_flight": {
+    "name": "book_flight",
+    "description": "Book a flight. Use only with concrete departure, destination, and date.",
+    "input_schema": {
+      "type": "object",
+      "properties": {
+        "from": {"type": "string"},
+        "to": {"type": "string"},
+        "date": {"type": "string", "description": "YYYY-MM-DD"},
+        "passengers": {"type": "integer", "default": 1}
+      },
+      "required": ["from", "to", "date"]
+    }
+  }
+}

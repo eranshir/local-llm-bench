@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c3_polite_rewrite",
+    "axis": "content_generation",
+    "system": "You are an editor. Rewrite to change tone without changing intent or meaning.",
+    "prompt": "Rewrite this email to be more polite and professional, but keep the same core requests:\n\n---\nSubject: This is broken\n\nThe deploy script broke again. Third time this week. I'm tired of fixing your messes. Fix it before EOD or I'm escalating to leadership. Also your PR from Tuesday still needs review and you've been ignoring me on Slack.\n\n---\n\nReturn only the rewritten email body (with subject line).",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: tone is professional/polite, all 3 original requests preserved (fix deploy, review the PR, respond on Slack), no fabricated details. Slight softening is fine; complete removal of urgency = partial."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 100
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_89i0nkktu3j83vlcbrom7s",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Subject: Request for Urgent Deployment Script Resolution and PR Review\n\nI hope this message finds you well. I am writing to bring to your attention that the deploy script has encountered an issue once again, representing the third occurrence this week. This recurring disruption is impacting our team's productivity and operational efficiency.\n\nI would greatly appreciate it if you could prioritize resolving this matter before end of day to minimize any further delays. Additionally, I would be grateful if you could review the PR submitted on Tuesday at your earliest convenience, as it has been pending and I have not received a response through Slack.\n\nThank you for your attention to these matters. Please let me know if you require any additional information or support to address these items promptly.\n\nBest regards,\n[Your name]"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 114,
+        "output_tokens": 152,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 1.4245619773864746
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "all 3 requests preserved, tone softened"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model successfully transformed the aggressive tone into a professional one while preserving all three core requests (fix deploy script by EOD, review Tuesday's PR, and address Slack communication) without adding fabricated details.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model successfully transformed the aggressive tone into a professional one while preserving all three core requests (fix deploy script by EOD, review Tuesday's PR, and address Slack communication) without adding fabricated details.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.9
+  }
+}

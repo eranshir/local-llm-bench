@@ -1,0 +1,31 @@
+# macOS
+.DS_Store
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.pytest_cache/
+
+# Editor
+.vscode/
+.idea/
+
+# Local results from re-running the suite (canonical results stay tracked)
+results/sanity*/
+results/*-phase2/
+results/*-clean/
+results/*-patched/
+results/*-b/
+results/*-c/
+
+# Temp files
+*.swp
+*.tmp
+/tmp/
+
+# Local env
+.env
+.env.local

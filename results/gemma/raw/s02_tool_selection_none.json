@@ -1,0 +1,54 @@
+{
+  "scenario": {
+    "id": "s02_tool_selection_none",
+    "axis": "tool_selection",
+    "system": "You are a helpful assistant with access to tools. Use them when appropriate; answer directly when no tool is needed.",
+    "prompt": "What is 2+2?",
+    "tools": [
+      "get_weather",
+      "calculator"
+    ],
+    "expected_tool": null,
+    "rubric": "Answers 4 directly (with or without calling calculator is acceptable \u2014 but MUST NOT call get_weather). Bonus if calls calculator."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 2,
+    "est_input_tokens": 3
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_lpt6pfsy4pkatj61r0v6ru",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "596256771",
+          "name": "calculator",
+          "input": {
+            "expression": "2+2"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 184,
+        "output_tokens": 15,
+        "cache_read_input_tokens": 18
+      }
+    },
+    "elapsed_s": 0.46913909912109375
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "used calculator \u2014 acceptable"
+    ]
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "scenario": {
+    "id": "s13_long_context_retrieval",
+    "axis": "long_context",
+    "system": "Answer questions based only on the provided document.",
+    "prompt_from_fixture": "bench/fixtures/long_doc_prompt.txt",
+    "tools": [],
+    "expected_tool": null,
+    "expected_answer": "OMEGA-SEVEN-INDIGO-9412",
+    "rubric": "Exact string 'OMEGA-SEVEN-INDIGO-9412' appears in response. ~96K-token document with needle at midpoint."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 95833
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_wj9dvf4g76h8zde51cam9",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "OMEGA-SEVEN-INDIGO-9412"
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 59837,
+        "output_tokens": 14,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 83.97285795211792
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "found expected answer 'OMEGA-SEVEN-INDIGO-9412'"
+    ]
+  }
+}

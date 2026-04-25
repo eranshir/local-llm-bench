@@ -1,0 +1,63 @@
+{
+  "scenario": {
+    "id": "s05_multistep_plan",
+    "axis": "multistep_planning",
+    "system": "You have tools to fetch URLs, extract text, and write files. Plan and execute multi-step tasks.",
+    "prompt": "Fetch https://example.com, extract the main heading, and save it to /tmp/heading.txt.",
+    "tools": [
+      "fetch_url",
+      "extract_heading",
+      "write_file"
+    ],
+    "expected_tool": "fetch_url",
+    "rubric": "First call is fetch_url. Model acknowledges this is a multi-step task (either emits a plan or makes the first call to fetch_url). Partial credit if it only fetches."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 3,
+    "est_input_tokens": 21
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_opiht8jtz8dbwa93s18p9w",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "926162226",
+          "name": "fetch_url",
+          "input": {
+            "url": "https://example.com"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 218,
+        "output_tokens": 19,
+        "cache_read_input_tokens": 5
+      }
+    },
+    "elapsed_s": 0.5952699184417725
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: fetch_url"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly identifies the first step of the multi-step task by making the required fetch_url tool call.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The model correctly identifies the first step of the multi-step task by making the required fetch_url tool call.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.0
+  }
+}

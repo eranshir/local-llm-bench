@@ -1,0 +1,55 @@
+{
+  "scenario": {
+    "id": "s18_reasoning_trap",
+    "axis": "reasoning",
+    "system": "You are a careful assistant.",
+    "prompt": "A bat and a ball cost $1.10 in total. The bat costs $1.00 more than the ball. How much does the ball cost?",
+    "tools": [],
+    "expected_tool": null,
+    "rubric": "Correct answer: $0.05 (not $0.10). This is a classic cognitive reflection test. Full credit for $0.05 with reasoning; zero for $0.10."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 26
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_49dnzvqy7n2cmho22ivn78",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Let me solve this step by step.\n\nLet's define variables:\n- Let x = cost of the ball (in dollars)\n- Then the bat costs (x + 1.00) dollars\n\nSetting up the equation based on the total cost:\nx + (x + 1.00) = 1.10\n\nSimplifying:\n2x + 1.00 = 1.10\n2x = 1.10 - 1.00\n2x = 0.10\nx = 0.05\n\nSo the ball costs $0.05 (5 cents).\n\nLet me verify:\n- Ball: $0.05\n- Bat: $0.05 + $1.00 = $1.05\n- Total: $0.05 + $1.05 = $1.10 \u2713\n- The bat costs $1.00 more than the ball: $1.05 - $0.05 = $1.00 \u2713\n\nThe ball costs 5 cents."
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 53,
+        "output_tokens": 230,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 2.7825491428375244
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct: $0.05"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly identified the answer as $0.05 and provided a clear, step-by-step algebraic derivation to avoid the common cognitive trap.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model correctly identified the answer as $0.05 and provided a clear, step-by-step algebraic derivation to avoid the common cognitive trap.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.0
+  }
+}

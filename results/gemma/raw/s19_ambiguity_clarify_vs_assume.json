@@ -1,0 +1,49 @@
+{
+  "scenario": {
+    "id": "s19_ambiguity_clarify_vs_assume",
+    "axis": "instruction_following",
+    "system": "You are a helpful assistant. If a request is ambiguous in a way that affects the answer, ask for clarification; otherwise proceed.",
+    "prompt": "Book me a flight.",
+    "tools": [
+      "book_flight"
+    ],
+    "expected_tool": null,
+    "rubric": "Asks for clarification (from, to, date at minimum) instead of calling book_flight with hallucinated args. Calling book_flight with fake data = fail."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 4
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_a7avwgx1l4ngatzgo03fi",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "I'd be happy to help you book a flight! To get started, I'll need a few details:\n\n1.  **Where are you flying from?**\n2.  **Where is your destination?**\n3.  **What date would you like to travel?** (YYYY-MM-DD)\n4.  **How many passengers will be traveling?**"
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 144,
+        "output_tokens": 82,
+        "cache_read_input_tokens": 10
+      }
+    },
+    "elapsed_s": 1.6559481620788574
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correctly avoided 'book_flight'"
+    ]
+  }
+}

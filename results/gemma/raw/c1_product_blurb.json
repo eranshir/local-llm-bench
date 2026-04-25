@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c1_product_blurb",
+    "axis": "content_generation",
+    "system": "You are a marketing copy writer. Match the requested length and audience tone.",
+    "prompt": "Write a 250-300 word product blurb for a developer tool called 'Veridict' \u2014 a CI plugin that flags flaky tests by analyzing historical pass/fail patterns and signal correlation across PRs. Audience: engineering managers at mid-sized SaaS companies. Tone: confident, specific, no fluffy adjectives, lead with a quantified problem.",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 800,
+    "rubric": "Pass: 250-300 word range, leads with a quantified problem (numbers/percentages), names the product, mentions historical pattern analysis or PR signal correlation. Avoids generic adjectives ('amazing', 'powerful', 'revolutionary'). Specific enough that an EM could decide to evaluate it."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 800,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 82
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_w419l0vahxn7uou5sddu4b",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Your engineering velocity is being throttled by non-deterministic test suites. On average, mid-sized SaaS teams lose 15% of their total sprint capacity to \"re-run culture\"\u2014the manual process of re-triggering CI pipelines simply because a test failed due to environmental noise or race conditions rather than actual regressions. This isn't just a developer experience issue; it is a direct tax on your deployment frequency and a primary driver of CI/CD cost inflation.\n\nVeridict is a CI plugin designed to eliminate this noise by identifying flaky tests before they stall your pipeline. Unlike standard test runners that treat every failure as a binary event, Veridict applies statistical analysis to your historical pass/fail patterns. It treats test results as data points, not just logs.\n\nVeridict operates through two core mechanisms:\n1. **Historical Pattern Analysis:** The tool builds a baseline of stability for every test case in your repository. It flags tests that exhibit high variance in execution outcomes across identical code states, isolating flakiness from legitimate logic errors.\n2. **Signal Correlation:** Veridict analyzes cross-PR patterns to determine if a failure is an isolated incident or part of a systemic trend. By correlating failures across different branches and environments, it distinguishes between infrastructure instability and code-level regressions.\n\nIntegration is seamless via your existing CI provider. Veridict injects actionable intelligence directly into the PR workflow, tagging suspected flaky tests and providing a \"stability score\" that allows your team to triage failures with precision. Stop wasting high-cost engineering hours on ghost bugs. Implement Veridict to stabilize your pipeline and reclaim your team's velocity."
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 106,
+        "output_tokens": 338,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 3.808152675628662
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "257 words, named, quantified, no banned puffery"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The response meets all criteria: it falls within the word count range (approx. 275 words), leads with a quantified problem (15% sprint capacity loss), names the product, includes both required technical mechanisms, and maintains a professional, non-fluffy tone.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The response meets all criteria: it falls within the word count range (approx. 275 words), leads with a quantified problem (15% sprint capacity loss), names the product, includes both required technical mechanisms, and maintains a professional, non-fluffy tone.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.5
+  }
+}

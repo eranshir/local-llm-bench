@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c5_explain_to_kid",
+    "axis": "content_generation",
+    "system": "You are a science communicator. Use analogies a 10-year-old can grasp; avoid technical jargon unless you immediately explain it.",
+    "prompt": "Explain how a transformer language model 'attends' to context, in 200 words or less. Audience: a curious 10-year-old. Use one concrete analogy. Don't say 'matrix' or 'tensor'. Don't say 'I' or 'as an AI'.",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: \u2264200 words, includes one concrete analogy, no banned terms (matrix/tensor/I/AI). Captures the core idea (model decides which earlier words matter for the next word). No hallucinated technical facts."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 51
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_kwuz93beldhml9im8jq27",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "Imagine you're reading a storybook and trying to understand what each character is thinking. When you see the word \"it\" on page 5, your brain automatically thinks about what \"it\" refers to - maybe the ball from earlier or the dog from page 3.\n\nA transformer language model works like your brain! When it reads words, it has special \"attention\" tools that help it remember important information from earlier in the sentence or paragraph. It's like having little sticky notes that say \"this word refers to that thing.\"\n\nThe model doesn't read left-to-right like you do. Instead, it looks at the whole sentence and uses its attention system to figure out which words are connected. When it sees \"he threw the ball,\" it knows that \"he\" refers to a boy, not a dog. It keeps track of these connections while reading.\n\nThink of it like having many tiny detective eyes that scan the entire sentence and say \"Oh! That word 'her' connects to the girl in the first line!\" The more it practices, the better at spotting these clues it gets.\n\nThis attention system makes language models much smarter than simple word-by-word readers."
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 101,
+        "output_tokens": 236,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 2.1464619636535645
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "193 words, has analogy, no banned terms"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The response follows all constraints: it is under 200 words, uses a concrete analogy (detective eyes/sticky notes), avoids all banned terms, and correctly explains the concept of attention to a child.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The response follows all constraints: it is under 200 words, uses a concrete analogy (detective eyes/sticky notes), avoids all banned terms, and correctly explains the concept of attention to a child.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.0
+  }
+}

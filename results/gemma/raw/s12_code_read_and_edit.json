@@ -1,0 +1,54 @@
+{
+  "scenario": {
+    "id": "s12_code_read_and_edit",
+    "axis": "code_editing",
+    "system": "You are a coding assistant with file access tools.",
+    "prompt": "Read /workspace/bench/fixtures/buggy.py, find the off-by-one error, and call apply_patch with the fix.",
+    "tools": [
+      "read_file",
+      "apply_patch"
+    ],
+    "expected_tool": "read_file",
+    "rubric": "First calls read_file. Then identifies bug (loop bound uses <= instead of <). Emits correct patch via apply_patch."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 2,
+    "est_input_tokens": 25
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_s95w18gi4hbex0fmcg0oe",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "647743023",
+          "name": "read_file",
+          "input": {
+            "path": "/workspace/bench/fixtures/buggy.py"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 171,
+        "output_tokens": 25,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 0.592231035232544
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: read_file"
+    ]
+  }
+}

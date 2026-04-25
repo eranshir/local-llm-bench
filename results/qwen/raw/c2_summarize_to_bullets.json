@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c2_summarize_to_bullets",
+    "axis": "content_generation",
+    "system": "You are a faithful summarizer. Capture the key points; do not invent.",
+    "prompt_from_fixture": "bench/fixtures/article_for_summary.txt",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 600,
+    "rubric": "Pass: exactly 3 bullets, each captures a distinct major point, no invented facts. Order should follow the article's argumentative structure."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 600,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 896
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_ovfu45fndcggzsfcmteqr8",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "\u2022 Cost asymmetry drives teams to adopt local AI inference, with 80-95% reduction in inference costs for simple tasks like classification and summarization when using open-weight models on consumer hardware, though complex reasoning still requires hosted APIs.\n\n\u2022 Privacy regulations such as the EU AI Act push teams toward local inference to comply with data handling requirements, allowing them to avoid sending user data outside their controlled environment and thus simplify compliance.\n\n\u2022 Engineering velocity improves with local inference due to reduced latency from eliminating network round-trip times, queue delays, and rate limits, enabling interactive agent workflows with faster response times than hosted APIs."
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 768,
+        "output_tokens": 125,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 1.4097659587860107
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "3 bullets, covers main forces"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model provided exactly three bullets, each capturing a distinct major point (cost, privacy, and velocity) in the correct order without inventing facts.",
+    "raw_output": "{\"verdict\": \"pass\", \"explanation\": \"The model provided exactly three bullets, each capturing a distinct major point (cost, privacy, and velocity) in the correct order without inventing facts.\"}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.7
+  }
+}

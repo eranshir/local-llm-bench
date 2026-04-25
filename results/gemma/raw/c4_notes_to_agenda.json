@@ -1,0 +1,56 @@
+{
+  "scenario": {
+    "id": "c4_notes_to_agenda",
+    "axis": "content_generation",
+    "system": "You are an executive assistant. Extract structure from messy notes.",
+    "prompt": "Convert these meeting notes into a structured meeting agenda with sections (Discussion, Decisions, Action Items). Keep the meeting title 'Mobile launch sync \u2014 2026-04-23'.\n\n---\nmobile launch sync 4/23. ali: ios build still failing on m1 but works on m2 - weird. need to investigate. dec: paul will do that by friday. ben: app store review is taking 2 days longer than usual, we should pad timelines. dec: launch slipped to may 12. amanda wants marketing copy by may 1. unresolved: do we ship dark mode in v1 or v2? need design input. ali to ping nat. paul: should we add crash reporting before launch? everyone said yes. paul will pick a vendor. revenue forecast for q3 was discussed - tabled until next week with cfo.\n---",
+    "tools": [],
+    "expected_tool": null,
+    "max_tokens": 800,
+    "rubric": "Pass: 3 clearly-labeled sections (Discussion / Decisions / Action Items), action items have owner + due date where given, dark mode listed as unresolved, revenue forecast deferred. No invented owners or dates."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 800,
+    "has_system": true,
+    "n_tools": 0,
+    "est_input_tokens": 180
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_rafbd5c4omgpajxrldkj",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "text",
+          "text": "# Mobile launch sync \u2014 2026-04-23\n\n### Discussion\n* **iOS Build Issues:** Ali reported that the iOS build is failing on M1 chips but functioning correctly on M2.\n* **App Store Review:** Ben noted that the review process is currently taking two days longer than usual; suggested padding future timelines to compensate.\n* **Dark Mode Strategy:** Discussion regarding whether to include dark mode in the V1 launch or defer it to V2. Requires design input.\n* **Crash Reporting:** Discussion on whether to implement crash reporting prior to launch.\n* **Q3 Revenue Forecast:** Discussed, but the topic has been tabled until next week for a meeting with the CFO.\n\n### Decisions\n* **Launch Date:** The official launch date has been moved to **May 12**.\n* **Crash Reporting:** The team agreed to add crash reporting before the launch.\n\n### Action Items\n* **Investigate M1 Build Failures:** Paul to investigate the iOS build issue on M1 chips. (Due: Friday)\n* **Marketing Copy:** Amanda requires marketing copy by **May 1**.\n* **Dark Mode Consultation:** Ali to contact Nat for design input regarding dark mode.\n* **Crash Reporting Vendor:** Paul to select a crash reporting vendor."
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "end_turn",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 212,
+        "output_tokens": 270,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 3.205338954925537
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "3 sections present, dark mode listed, revenue deferred"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly identified all required sections, included owners and due dates where provided, captured the unresolved dark mode issue, and noted the deferred revenue forecast without inventing information.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model correctly identified all required sections, included owners and due dates where provided, captured the unresolved dark mode issue, and noted the deferred revenue forecast without inventing information.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.4
+  }
+}

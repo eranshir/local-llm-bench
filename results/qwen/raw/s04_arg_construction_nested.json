@@ -1,0 +1,67 @@
+{
+  "scenario": {
+    "id": "s04_arg_construction_nested",
+    "axis": "arg_construction",
+    "system": "You are an assistant that schedules calendar events.",
+    "prompt": "Schedule a 30-minute meeting called 'Bench review' tomorrow at 10am with alice@example.com and bob@example.com.",
+    "tools": [
+      "create_calendar_event"
+    ],
+    "expected_tool": "create_calendar_event",
+    "rubric": "Correct title, duration=30, ISO8601 start with a TOMORROW date + 10:00, attendees array with both emails. All fields populated."
+  },
+  "payload_summary": {
+    "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 27
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_3tbh1omemtmu1g13wh28lg",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "460281359",
+          "name": "create_calendar_event",
+          "input": {
+            "title": "Bench review",
+            "start": "2023-10-05T10:00:00Z",
+            "duration_minutes": 30,
+            "attendees": [
+              "alice@example.com",
+              "bob@example.com"
+            ]
+          }
+        }
+      ],
+      "model": "qwen3-coder-30b-a3b-instruct-dwq-v2",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 393,
+        "output_tokens": 83,
+        "cache_read_input_tokens": 0
+      }
+    },
+    "elapsed_s": 0.9085090160369873
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: create_calendar_event"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly extracted the title, duration, attendees, and calculated a valid ISO8601 timestamp for tomorrow at 10am.",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model correctly extracted the title, duration, attendees, and calculated a valid ISO8601 timestamp for tomorrow at 10am.\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 0.8
+  }
+}

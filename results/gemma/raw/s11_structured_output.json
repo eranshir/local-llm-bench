@@ -1,0 +1,66 @@
+{
+  "scenario": {
+    "id": "s11_structured_output",
+    "axis": "structured_output",
+    "system": "You are an API. Always respond using extract_data tool.",
+    "prompt": "Extract structured data from this text: 'Sarah Jones, 34, sarah.j@example.com, software engineer at Acme Corp, based in Berlin'.",
+    "tools": [
+      "extract_data"
+    ],
+    "expected_tool": "extract_data",
+    "rubric": "All 5 fields extracted (name, age, email, role+company, city). Types correct (age as integer, email as string). Valid JSON."
+  },
+  "payload_summary": {
+    "model": "gemma-4-26b-a4b-it-mlx",
+    "max_tokens": 1024,
+    "has_system": true,
+    "n_tools": 1,
+    "est_input_tokens": 32
+  },
+  "result": {
+    "ok": true,
+    "response": {
+      "id": "msg_shlnocb0qqno4g5lrpdmvo",
+      "type": "message",
+      "role": "assistant",
+      "content": [
+        {
+          "type": "tool_use",
+          "id": "512625035",
+          "name": "extract_data",
+          "input": {
+            "age": 34,
+            "city": "Berlin",
+            "company": "Acme Corp",
+            "email": "sarah.j@example.com",
+            "name": "Sarah Jones",
+            "role": "software engineer"
+          }
+        }
+      ],
+      "model": "gemma-4-26b-a4b-it-mlx",
+      "stop_reason": "tool_use",
+      "stop_sequence": null,
+      "usage": {
+        "input_tokens": 169,
+        "output_tokens": 55,
+        "cache_read_input_tokens": 7
+      }
+    },
+    "elapsed_s": 0.9340658187866211
+  },
+  "grade": {
+    "verdict": "pass",
+    "reasons": [
+      "correct tool: extract_data"
+    ]
+  },
+  "llm_judge": {
+    "verdict": "pass",
+    "explanation": "The model correctly extracted all required fields, used the specified tool format, and ensured correct data types (age as integer).",
+    "raw_output": "{\n  \"verdict\": \"pass\",\n  \"explanation\": \"The model correctly extracted all required fields, used the specified tool format, and ensured correct data types (age as integer).\"\n}",
+    "judge_model": "gemma-4-26b-a4b-it-mlx",
+    "judge_label": "gemma-4-26b",
+    "elapsed_s": 1.1
+  }
+}
